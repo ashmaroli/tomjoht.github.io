@@ -19,12 +19,8 @@ plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
   - jekyll-paginate
-  - jekyll-seo
 
 url: https://idratherbewriting.com
-
-exclude:
-  - vendor
 
 # this enables collections
 collections:

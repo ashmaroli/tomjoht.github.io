@@ -4,24 +4,19 @@ description: Technical writing blog focusing on the latest trends, news, and oth
 media: https://idratherbewritingmedia.com/
 host: 127.0.0.1
 port: 4029
+baseurl: ""
 feedback_email: tomjoht@gmail.com
 sidebar_accordion: true
-markdown: redcarpet
 show_audience_label: true
 output: web
 paginate: 15
 timezone: America/Los_Angeles
-highlighter: rouge
-markdown: kramdown
 kramdown:
-  input: GFM
-  auto_ids: true
   syntax_highlighter: rouge
 
 format: web
 plugins:
   - jekyll-sitemap
-  - jekyll-mentions
   - jekyll-redirect-from
   - jekyll-paginate
   - jekyll-seo
@@ -29,9 +24,6 @@ plugins:
 url: https://idratherbewriting.com
 
 exclude:
-  - _drafts
-  - .idea
-  - _site
   - vendor
 
 # this enables collections

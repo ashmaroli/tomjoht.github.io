@@ -1,9 +1,13 @@
 language: ruby
 cache: bundler
-branches:
-  only:
-    - gh-pages
 script:
-  - bundle exec jekyll algolia push
+  - bundle exec ruby .memprof
 rvm:
- - 2.2
+  - 2.7
+env:
+  matrix:
+    - BUILD_MODE=released
+    - BUILD_MODE=repository
+before_install:
+  - gem update --system --no-document
+  - gem install bundler --no-document

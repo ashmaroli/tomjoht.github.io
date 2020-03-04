@@ -1,11 +1,17 @@
 source 'https://rubygems.org'
 
-gem 'jekyll'
+if ENV['BUILD_MODE'] == 'released'
+  gem 'jekyll', '~> 4.0'
+else
+  gem 'jekyll', github: 'jekyll/jekyll'
+end
+
+gem 'memory_profiler'
+gem 'fileutils'
 
 group :jekyll_plugins do
-  gem 'github-pages'
-  gem 'jekyll-algolia'
+  gem 'jekyll-mentioji', github: 'ashmaroli/jekyll-mentioji', branch: 'reduce-allocations'
+  gem 'jekyll-paginate'
   gem 'jekyll-redirect-from'
-  gem 'jekyll-seo-tag'
-  gem 'jekyll-seo'
+  gem 'jekyll-sitemap'
 end

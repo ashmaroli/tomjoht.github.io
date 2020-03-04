@@ -19,6 +19,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
   - jekyll-paginate
+  - jekyll-seo-tag
 
 url: https://idratherbewriting.com
 

@@ -8,6 +8,7 @@ end
 
 gem 'memory_profiler'
 gem 'fileutils'
+gem 'liquid', github: 'Shopify/liquid'
 
 group :jekyll_plugins do
   gem 'jekyll-mentioji', github: 'ashmaroli/jekyll-mentioji', branch: 'reduce-allocations'

@@ -29,14 +29,14 @@ social:
     - "https://github.com/tomjoht"
 
 plugins:
+  - jekyll-commonmark
   - jekyll-mentions
   - jekyll-paginate
   - jekyll-redirect-from
   - jekyll-seo-tag
   - jekyll-sitemap
 
-kramdown:
-  syntax_highlighter: rouge
+markdown: CommonMark
 
 paginate: 15
 permalink: /:year/:month/:day/:title/

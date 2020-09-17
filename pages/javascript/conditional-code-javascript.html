@@ -1,0 +1,127 @@
+---
+layout: page
+title: 'JavaScript: Conditional Code'
+permalink: /conditional-code-javascript/
+date: 2013-02-02 16:48:44.000000000 -08:00
+categories:
+- java
+jtype: notes_javascript
+---
+
+<p>You can start building more complex JavaScript statements by using conditional code. The conditional code allows you to ask if a condition is met. If the condition is met, a certain code block is run. If the condition isn't met, a different code block is run. The answer to the condition must always be a yes or no answer.</p>
+<h2>Conditional Code Format</h2>
+<p>Here's the format of the conditional code:</p>
+<p>{% highlight javascript %}//begin with an if statement
+if  ( condition ) {
+//insert code to run ...
+alert("Hello World");
+//otherwise, run this code
+} else {
+//end the code block
+}{% endhighlight %}</p>
+<p>The statement begins with <code>if</code> followed by a condition in parentheses. After the condition, the code block is run. Code blocks are contained within curly braces <code>{ }</code>. The <code>else</code> means "if the previous condition isn't met, do this instead," or more simply, "Otherwise."</p>
+<p>Here's an example with some information:</p>
+<p>{% highlight javascript %}//first declare a variable
+var a = 100;
+//state an if condition
+if ( a > 100 ) {
+//if true, then run this command
+alert("Hello");
+//if the condition isn't met, do this:
+} else {
+alert("Goodbye");
+}{% endhighlight %}</p>
+<h2>Conditional Operators</h2>
+<p>In the condition statement, you can use a variety of operators to ask questions:</p>
+<p>{% highlight javascript %}if ( a == b) // if a is equal to b
+if ( a !=b ) // if a is not equal to b
+if ( a > b ) // if a is greater than b
+if ( a < b ) // if a is less than b
+if ( a >= b ) // if a is greater than or equal to b
+if ( a <= b )// if a is less than or equal to b{% endhighlight %}</p>
+<h2>Equals Signs</h2>
+<p>Note that the equals operator is two equals signs <code>==</code>, not one. When you set the value of a variable, you use one equals sign <code>=</code>. One equals sign means "assign as" whereas two equals signs means "equals".</p>
+<p>There's also a triple equals sign <code>===</code>, which means "is strictly equal to." This is a more formal way of checking conditions. For example, if you have a variable that's a number, such as <code>var a = 10</code>, and another variable that's a string, such as <code>var a = "10"</code>, the two variables are different types of variables and therefore aren't "strictly" equal, even though they're the same.</p>
+<h2>Nested Conditions</h2>
+<p>You can nest multiple conditions. A nested condition looks like this:</p>
+<p>{% highlight javascript %}if  ( condition ) {
+//run some code...
+} else {
+if  ( condition ) {
+//run some code...
+} else {
+// otherwise, run this code
+}{% endhighlight %}</p>
+<p>Usually you don't nest more than a couple of condition levels, so that the code doesn't become too complicated.</p>
+<h2>And/Or Operators</h2>
+<p>You can create more advanced conditions by including <code>&amp;&amp;</code> (and) or <code>||</code> (or) operators. Here's an example of the "and" operator:</p>
+<p>{% highlight javascript %}//if a is equal to b and a is equal to c
+if ( a == b && a == c ){% endhighlight %}</p>
+<p>Here's an example with "or" operator:</p>
+<p>{% highlight javascript %}//if a is equal to be or a is equal to c
+if ( a == b || a == c ){% endhighlight %}</p>
+<p>For clarity, you can surround the conditions in their own parentheses, like this:</p>
+<p>{% highlight javascript %}if ( (a == b) && (a == c) ){% endhighlight %}</p>
+<p>Just remember that you always need both opening and closing parentheses. And just as with more simple conditional statements, the answer needs to be either yes or no.</p>
+<h2>Arithmetic Operators</h2>
+<p>You can use a variety of arithmetic operators:</p>
+<p>{% highlight javascript %}+ // add
+- //subtract
+* //multiple
+/ //divide
+% // the remainder (the % is called a modulus){% endhighlight %}</p>
+<p>Here's an example:</p>
+<p>{% highlight javascript %}if ( a + b == 100){% endhighlight %}</p>
+<p>This is pretty straightforward: if a plus b is equal to 100. However, when you combine multiple arithmetic operators, JavaScript runs multiplication and division first, and then addition and subtraction. This prioritization is called "operator precedence." So if the operation is the following:</p>
+<p>{% highlight javascript %}( 2 + 2 * 12 ){% endhighlight %}</p>
+<p>The result will be 26 rather than 48. You multiply 12 * 2 to get 24, and then add 2 to get 26.</p>
+<p>To specify that the addition or subtraction runs first, you can surround it in parentheses:</p>
+<p>{% highlight javascript %} ( (2+2) * 12 ){% endhighlight %}</p>
+<p>Now the result will be 48.</p>
+<h2>The Remainder Operator</h2>
+<p>The remainder operator refers to what's left over when a number doesn't divide evenly into another number. Here's an example of the remainder operator in action:</p>
+<p>{% highlight javascript %}//set a variable
+var year = 2010;
+//set a variable to be the days left over after
+//dividing the year by 4
+var excess = year % 4{% endhighlight %}</p>
+<p>The value for the remainder would be 2. This is because 4 goes into 2010 (the year) 502 times, with a remainder of 2.</p>
+<h2>Arithmetic Shorthand</h2>
+<p>Because arithmetic operators are used so frequently, there's a shorthand way of writing them. When you see <code>+=</code>, it means to add the number that follows to the variable. Conversely, <code>-=</code> means subtract the number from the variable, and so on.</p>
+<p>The following are the long and short ways of writing the same operators:</p>
+<p>{% highlight javascript %}score = score + 10; // the long way
+score += 10; // the short way</p>
+<p>score = score - 10; // the long way
+score -= 10; // the short way</p>
+<p>score = score * 10; // the long way
+score *= 10; // the short way</p>
+<p>score = score / 10; // the long way
+score /= 10; // the short way{% endhighlight %}</p>
+<h2>Unary (<code>++</code>) Operators</h2>
+<p>There's another shorthand for arithmetic operators: <code>++</code> is called a unary operator. When you add <code>++</code> with a variable, it means to increment the variable by 1. Similarly, if you add <code>--</code>, it means decrease the variable by 1. Here are a few examples:</p>
+<p>{% highlight javascript %}a = a + 1; // the long way of writing it
+a += 1; // a shorter way
+a ++; // an even shorter way
+a++; // even shorter
+++a; // also acceptable and means the same thing.{% endhighlight %}</p>
+<h2>Ternary Operators</h2>
+<p>There's one more shorthand operator to mention. A ternary operator has three components and reduces what would otherwise occupy several lines of code into just one line. Rather than writing out:</p>
+<p>{% highlight javascript %}//declare some variables
+var a = 500;
+var b = 600;
+var highScore;
+//state an if condition
+if ( a > b ) {
+//run some code
+highScore = a;
+//otherwise run this code
+ } else {
+highScore = b;
+}{% endhighlight %}</p>
+<p>You can compress this into a couple of lines in the following format:</p>
+<p>{% highlight javascript %}condition ? true : false{% endhighlight %}</p>
+<p>After stating the condition, add a question mark <code>?</code>. After the question mark, write what should happen if the condition is true; then add a colon. On the right of the colon, write what should happen if the condition is false.</p>
+<p>Here's how the ternary operator would be written using the previous example:</p>
+<p>{% highlight javascript %}var a = 500; b = 600;
+var highScore = ( a > b ) ? highScore = a : b;{% endhighlight %}</p>
+<p>In other words, if <code>a</code> is greater than <code>b</code>, assign the <code>highScore</code> variable as <code>a</code>. If it's not, assign the <code>highScore</code> variable as <code>b</code>.</p>

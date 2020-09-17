@@ -1,0 +1,48 @@
+---
+layout: page
+title: 'JavaScript: Introduction'
+permalink: /javascript/
+categories:
+- java
+jtype: notes_javascript
+---
+
+<p><em>JavaScript Essential Training, </em>by Simon Allardice on <a href="http://lynda.com">Lynda.com</a>, provides an easy-to-understand video training series on JavaScript. The course begins at ground zero and proceeds through basic JavaScript programming concepts and techniques.</p>
+<p>These pages on my site are notes from the course. Most of the code examples come the course, but I usually modify the styles and add my own comments and explanations about what's going on. I plan to continue adding and expanding my notes here as I advance with my learning of JavaScript.</p>
+<h2>What is JavaScript?</h2>
+<p>JavaScript is a programming language that runs in your web browser. It's considered one of the main building blocks of web pages, complementing CSS and HTML, and provides the interactive elements of a web page. When you see page elements expand or collapse, slide around, change appearance on mouseover or click, appear or disappear, change color, and so on, it's JavaScript that enables this interactivity.</p>
+<p>JavaScript doesn't interact with your web server. All the action happens right in your browser, because your browser includes an engine to run and interpret JavaScript code.</p>
+<h2>A Basic Example of JavaScript</h2>
+<p>Here's the most basic example of a JavaScript statement:</p>
+<p>{% highlight javascript %} 
+<script type="text/javascript">
+alert("Hello World");
+</script>
+{% endhighlight %} </p>
+<p>When you run this JavaScript statement, an alert pops up in your browser that says, "Hello World."</p>
+<h2>Referencing JavaScript</h2>
+<p>When you integrate JavaScript in a web page, you enclose it in <code>script</code> tags. However, it's usually best not to mix your scripts with the HTML of your webpage. Instead, you insert the script in a separate .js file and then reference the js file on your web page. This makes it easier to write and maintain your JavaScript code.</p>
+<p>To reference a JavaScript file, insert the following:</p>
+<p>{% highlight javascript %} <script src="scripts.js"></script>{% endhighlight %} </p>
+<p>You can also add <code>type="text/javascript"</code> but this isn't required.</p>
+<p>{% highlight javascript %} <script type="text/javascript" src="scripts.js"></script>{% endhighlight %} </p>
+<p>This reference will pull in the script file (assuming it's in the same folder as your webpage and called scripts.js). You can insert the reference to your JavaScript file anywhere on the page, but the script will load in sequence where you insert it.</p>
+<p>In general, adding the reference to the script file before the closing <code>body</code> tag is a good idea, since this allows your web page content to load first. However, if you have scripts that need to load first, you would insert the script reference much earlier, such as in your <code>head</code>.</p>
+<h2>Basic JavaScript Syntax</h2>
+<p>Note a few basic syntax rules with JavaScript:</p>
+<ul>
+<li>Everything is case sensitive. "Alert" is different from "alert".</li>
+<li>Semicolons end a statement.</li>
+<li>Spaces don't matter except inside quotations.</li>
+</ul>
+<h2>Adding Comments</h2>
+<p>You add comments in JavaScript by adding two forward slashes at the beginning of lines, like this:</p>
+<p>{% highlight javascript %} //here's a sample comment
+alert("Hello, World");{% endhighlight %} </p>
+<p>In general, add comments above the lines they refer to. You can also add comments to multiple lines using <code>/*</code> and <code>*/</code> just like you do in CSS:</p>
+<p>{% highlight javascript %} alert("Hello, World");
+/*now we're going to write a long comment
+that will span several lines like this, because we
+have a lot to say.
+*/{% endhighlight %} </p>
+<p>Because these are notes on JavaScript, I've added a lot of comments in the example code.</p>

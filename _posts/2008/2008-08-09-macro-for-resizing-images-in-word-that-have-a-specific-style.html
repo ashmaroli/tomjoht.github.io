@@ -1,0 +1,61 @@
+---
+layout: post
+title: Word Macro for Resizing Images that Have a Specific Style
+date: 2008-08-09 22:58:27.000000000 -07:00
+categories:
+- technical-writing
+tags:
+- image resizing
+- macros
+- single sourcing
+- Technical Writing
+- Word
+status: publish
+
+published: true
+---
+<p>When you single source from an online help authoring tool and generate an output to Microsoft Word, almost invariably you have some clean-up reformatting to do. For me, one of these areas deals with screenshot images.</p>
+<p>I prefer to have Word resize my screenshots (to a smaller size) because images look a lot sharper and crisper when Word resizes them rather than when SnagIt or Photoshop resizes them (even with smooth scaling selected).</p>
+<p>Whatever your cleanup process, you might find the following image resizing macro helpful. It only resizes images that have a specific style (p_Result) before the image. It resizes the image to 75% of its original size.</p>
+<p>Note: It's important to isolate images that are surrounded by a specific style because you don't want to resize <em>all</em> your images. You don't want your note, tip, caution, and button images shrunk to 75% of their original size. Also, your substep images may need to have smaller sizes than your regular image sizes.</p>
+<p>Here's the macro:</p>
+<p>Sub ImageResize()<br />
+Dim PercentSize As Integer<br />
+Dim MyStyle As String<br />
+Dim oIshp As InlineShape<br />
+Dim oshp As Shape<br />
+PercentSize = InputBox("Enter percent of full size", "ResizePicture ", 75)<br />
+MyStyle = "p_Result"<br />
+With ActiveDocument<br />
+For Each oIshp In .InlineShapes<br />
+With oIshp<br />
+If .Range.Paragraphs(1).Style = MyStyle Then<br />
+.ScaleHeight = PercentSize<br />
+.ScaleWidth = PercentSize<br />
+End If<br />
+End With<br />
+Next oIshp<br />
+For Each oshp In .Shapes<br />
+With oshp<br />
+If .Anchor.Paragraphs(1).Style = MyStyle Then<br />
+.ScaleHeight Factor:=(PercentSize / 100), _<br />
+RelativeToOriginalSize:=msoCTrue<br />
+.ScaleWidth Factor:=(PercentSize / 100), _<br />
+RelativeToOriginalSize:=msoCTrue<br />
+End If<br />
+End With<br />
+Next oshp<br />
+End With<br />
+End Sub</p>
+<p>If you have no idea how to integrate a macro into your Word document, follow these steps. (This applies to Word 2007.)</p>
+<ol>
+<li>Click the <strong>Developer </strong>tab, and then click the <strong>Macros </strong>button.</li>
+<li>Type a name for the macro, such as <strong>ImageResize</strong>, and then click <strong>Create</strong>.</li>
+<li>Highlight the code that starts with Sub ImageResize and ends with End Sub.</li>
+<li>Paste the sample code above in its place, and then click Save and close the macro window.</li>
+</ol>
+<p>To run the macro, first make sure your images have a p_Result style before them. Then do the following:</p>
+<ol>
+<li>Click the <strong>Developer </strong>tab, and then click the <strong>Macros </strong>button.</li>
+<li>Select the ImageResize macro, and click the <strong>Run </strong>button.</li>
+</ol>

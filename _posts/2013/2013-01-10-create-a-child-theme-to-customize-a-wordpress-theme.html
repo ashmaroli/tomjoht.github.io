@@ -1,0 +1,32 @@
+---
+layout: post
+title: Create a Child Theme to Customize a WordPress Theme
+date: 2013-01-10 09:36:50.000000000 -08:00
+categories:
+- technical-writing
+tags:
+- wordpress tips
+status: publish
+
+published: true
+---
+<p>If you're customizing a WordPress theme, it's best to create a child theme out of the WordPress theme. With a child theme, you can update the parent theme when updates are available. Any customizations you make to the child theme will be retained.</p>
+<p>Here's how it works.</p>
+<ol>
+<li>If you'll be creating a child theme for the Twenty Twelve theme (whose folder in wp-content/themes is "twentytwelve"), create a folder called twentytwelve-child and upload it to wp-content/themes.</li>
+<li>Create a style.css file and add this to it:Theme Name: Twentytwelve Child</p>
+<pre>Description: Child theme for the twentytwelve theme
+ Your name here
+Template: twentytwelve
+@import url("../twentytwelve/style.css");
+</pre>
+</li>
+<li>In the Template field, change twentytwelve to whatever folder your parent theme is in. This field is the only really significant field up there.</li>
+<li>Change the Theme Name and any other details you want.</li>
+<li>For the @import url, change the URL to refer to your parent theme's stylesheet. Then upload your style.css file to the twentytwelve-child folder.</li>
+<li>Activate your child theme by going to Appearance &gt; Themes and select the Child theme. If you want a screenshot there as other themes display, add a screenshot.png file to your child theme folder. Now any changes you make to your child theme's stylesheet will overwrite the parent theme's styles. Additionally, any files you add, such as page.php or single.php, will overwrite the parent theme's files. If you add a functions.php file, the functions.php file information will be added to the parent's functions.php file rather than overwriting it.</li>
+</ol>
+<p>When the parent theme gets updated, just apply the update to the parent folder and your child theme's customizations will remain in tact.</p>
+<p>Here's a video showing the process:</p>
+<p><iframe src="https://www.youtube.com/embed/bWZxkSMwvvQ" height="315" width="560" allowfullscreen="" frameborder="0"></iframe></p>
+<p>See the <a title="Child Themes" href="http://codex.wordpress.org/Child_Themes">Child Themes</a> page on the WordPress Codex for more information.</p>

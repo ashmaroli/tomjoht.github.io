@@ -1,0 +1,26 @@
+---
+layout: post
+title: Adobe InDesign and Transparent Images on Color Backgrounds
+date: 2009-03-30 22:04:34.000000000 -07:00
+categories:
+- technical-writing
+tags:
+- Adobe Indesign
+- design
+- graphic design
+- Technical Writing
+- transparent images
+status: publish
+
+published: true
+---
+<p>When you insert a transparent image over a color background in Adobe InDesign, the transparent image may look good when you generate the PDF, but when you  actually print the image from a laser printer, the transparent  image has a faint background where the image should otherwise be transparent.</p>
+<p>I spent a long time trying to figure out the solution to this problem. It seemed to be a new, unheard of issue by everyone I asked. But after a post to an InDesign forum, I found the answer.</p>
+<p>InDesign Secrets calls it "Yucky Discolored Box Syndrome." <a href="http://indesignsecrets.com/eliminating-ydb-yucky-discolored-box-syndrome.php" target="_blank">Here's their solution:</a></p>
+<blockquote><p>Create a Transparency Flattener Preset that completely rasterizes everything:</p>
+<ol>
+<li>Edit &gt; Transparency Flattener Presets, click on "High" as a starting point, and then click "New."</li>
+<p>In the ensuing dialog box, yank the raster/vector slider all the way to the left. Set the linework resolution to the printer's res (say, 600), and set the gradient/mesh resolution to, oh, 150. (I think you'll find shadow appearance satisfactory at 150. If not, go to 300.) Save as a new Flattener Preset.</p>
+<li>File &gt; Print, and under Output, choose Composite CMYK, and CHECK the "Simulate Overprint" checkbox. Under Advanced, select your all-raster flattener.</li>
+</ol>
+</blockquote>

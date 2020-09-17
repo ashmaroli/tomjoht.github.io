@@ -1,0 +1,102 @@
+---
+layout: post
+title: Discovering Relationship Tables
+date: 2009-08-03 07:43:20.000000000 -07:00
+categories:
+- technical-writing
+tags:
+- context-sensitive help
+- dita
+- related links
+- relationship tables
+- Technical Writing
+- Theresa Putkey
+- usability
+status: publish
+
+published: true
+---
+<p>Lately I've been creating context-sensitive help for an online application. As part of my strategy, I've been trying to follow Theresa Putkey's advice in "<a href="http://www.stc.org/Intercom/PDFs/2009/200906_13-15.pdf" target="_blank">Usability in Context-Sensitive Help</a>." In her article, Theresa recommends providing more than just the steps for a specific task in the context-sensitive help window. Instead, she says to show more contextual links, including answers to why, when, and who questions, because too frequently the user who searches for help may have needs outside the specific task you describe.</p>
+<p>Theresa explains,</p>
+<blockquote><p>The traditional way of providing content in a context-sensitive help link has been to link to the procedure for the page. Not only can this be limiting for the user, but it also can be limiting for the writer and the company. By picking a specific procedure, the writer is guessing at what the user wants to do on the page. While usability testing would give us more insight, if we don't have this option, we can make the context sensitive help link more applicable to more people by providing a link to both a How topic and the Why, When, and Who information.</p>
+<p>If we don't provide additional options in the context-sensitive help, we are, in effect, making it more difficult for users to have their questions answered. By forcing them to browse and search through a help system they may be unfamiliar with, and by not highlighting the various options available for that screen, window, or page, we limit the options for the user and perhaps contribute to higher support costs.</p></blockquote>
+<p>To provide a variety of links to the user, you can manually list them, which is tedious and prone to error. Or you can use something like Related Links or  Concept Links, which shows a list of links in a hard-to-see pop-up. However, there's also another option: relationship tables. I'm new to this concept, but my initial experience with them has gotten me excited.</p>
+<p>Relationship tables come from the world of DITA, but Madcap now gives you the ability to create them in Flare 5. From one table you can manage all the related links for your entire project. Although you can define exclusions and inclusions, basically links in the same row are part of a family, and that family can appear on each topic that you embed the relationship table on.</p>
+<p>For example, in the following table, I have four columns.</p>
+<table style="border-collapse:collapse" border="0">
+<colgroup>
+<col style="width: 139px;" />
+<col style="width: 160px;" />
+<col style="width: 166px;" />
+<col style="width: 173px;" /> </colgroup>
+<tbody>
+<tr>
+<td style="padding-left: 7px; padding-right: 7px; border-top:  solid black 0.5pt; border-left:  solid black 0.5pt; border-bottom:  solid black 0.5pt; border-right:  solid black 0.5pt"></td>
+<td style="padding-left: 7px; padding-right: 7px; border-top:  solid black 0.5pt; border-left:  none; border-bottom:  solid black 0.5pt; border-right:  solid black 0.5pt">Concept</td>
+<td style="padding-left: 7px; padding-right: 7px; border-top:  solid black 0.5pt; border-left:  none; border-bottom:  solid black 0.5pt; border-right:  solid black 0.5pt">Task</td>
+<td style="padding-left: 7px; padding-right: 7px; border-top:  solid black 0.5pt; border-left:  none; border-bottom:  solid black 0.5pt; border-right:  solid black 0.5pt">Reference</td>
+</tr>
+<tr>
+<td style="padding-left: 7px; padding-right: 7px; border-top:  none; border-left:  solid black 0.5pt; border-bottom:  solid black 0.5pt; border-right:  solid black 0.5pt">Plugins</td>
+<td style="padding-left: 7px; padding-right: 7px; border-top:  none; border-left:  none; border-bottom:  solid black 0.5pt; border-right:  solid black 0.5pt">About Plugins</td>
+<td style="padding-left: 7px; padding-right: 7px; border-top:  none; border-left:  none; border-bottom:  solid black 0.5pt; border-right:  solid black 0.5pt">Installing Plugins</p>
+<p>Editing Plugins</p>
+<p>Removing Plugins</td>
+<td style="padding-left: 7px; padding-right: 7px; border-top:  none; border-left:  none; border-bottom:  solid black 0.5pt; border-right:  solid black 0.5pt">Lists of Recommended Plugins</td>
+</tr>
+<tr>
+<td style="padding-left: 7px; padding-right: 7px; border-top:  none; border-left:  solid black 0.5pt; border-bottom:  solid black 0.5pt; border-right:  solid black 0.5pt">Themes</td>
+<td style="padding-left: 7px; padding-right: 7px; border-top:  none; border-left:  none; border-bottom:  solid black 0.5pt; border-right:  solid black 0.5pt">About Themes</p>
+<p>Theme Hierarchy</p>
+<p>Columns in Themes</td>
+<td style="padding-left: 7px; padding-right: 7px; border-top:  none; border-left:  none; border-bottom:  solid black 0.5pt; border-right:  solid black 0.5pt">Installing Themes</p>
+<p>Modifying Theme Stylesheets</p>
+<p>Customizing Theme Categories</td>
+<td style="padding-left: 7px; padding-right: 7px; border-top:  none; border-left:  none; border-bottom:  solid black 0.5pt; border-right:  solid black 0.5pt">Best Magazine Themes</td>
+</tr>
+</tbody>
+</table>
+<p>After inserting a relationship table proxy into your Flare masterpage, and setting each link type as a "Family" link type, here's what automatically shows up on each page.</p>
+<p>On all the plugins pages, you'll see the following:</p>
+<p><strong>Related Concepts<br />
+</strong></p>
+<ul>
+<li>About Plugins</li>
+</ul>
+<p><strong>Related Tasks<br />
+</strong></p>
+<ul>
+<li>Installing Plugins</li>
+<li>Editing Plugins</li>
+<li>Removing Plugins</li>
+</ul>
+<p><strong>Reference Reference<br />
+</strong></p>
+<ul>
+<li>Lists of Recommended Plugins</li>
+</ul>
+<p><em>Note: If you're viewing the Installing Plugins page, the Installing Plugins doesn't appear in the list of links. (The same smart exclusion isn't true of Flare's Concept links.)</em></p>
+<p>On the themes pages, the list of related links would look like this:</p>
+<p><strong>Related Concepts<br />
+</strong></p>
+<ul>
+<li>About Themes</li>
+<li>Theme Hierarchy</li>
+<li>Columns in Themes</li>
+</ul>
+<p><strong>Related Tasks<br />
+</strong></p>
+<ul>
+<li>Installing Themes</li>
+<li>Modifying Theme Stylesheets</li>
+<li>Customizing Theme Categories</li>
+</ul>
+<p><strong>Reference Topics<br />
+</strong></p>
+<ul>
+<li>Best Magazine Themes</li>
+</ul>
+<p>The cool thing is that you can manage all your related links from this one table. You can also specify more details with relationship tables, such as having links only appear on certain pages and targets, and applying conditional tags. But the basic concept is simple.</p>
+<p>I've even styled my relationship table links so that they float in a narrow side column to the right of the main topic. My approach for context-sensitive help is to list the most common task for the page in the main column, and then provide the list of related links in a sidebar on the right. If the user clicks the help and says, no, that's not what I want, he or she won't need to scroll down to the end to see related topics.</p>
+<p><img src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/samplehelptopic-smallimage1.gif" /></p>
+<p>For more information on relationship tables in Flare, see <a href="http://webhelp.madcapsoftware.com/flare/Content/Nav_Links/Relationship_Links/About_Relationship_Tables.htm?SearchType=Stem&amp;Highlight=relationship|Relationship|relationships|Relationships||tables|table|Tables|Table" target="_blank">About Relationship Tables in Flare's help</a>.</p>

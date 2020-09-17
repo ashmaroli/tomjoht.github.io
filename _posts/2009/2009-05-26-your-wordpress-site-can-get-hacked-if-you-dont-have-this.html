@@ -1,0 +1,35 @@
+---
+layout: post
+title: Your WordPress Site Can Get Hacked If You Don't Have This
+date: 2009-05-26 19:00:54.000000000 -07:00
+categories:
+- technical-writing
+- wordpress
+tags:
+- ftp
+- hacked
+- security
+- security phrases
+- site hacked
+- support
+- wp-config
+status: publish
+
+published: true
+---
+<p>I helped another person whose WordPress site was hacked this weekend. I've noticed a trend about sites that get hacked. Most of the people installed their WordPress blog either long ago, before the right security phrases were included in the wp-config.php file, or they installed WordPress through an auto-installer that didn't insert the right security phrases.</p>
+<p>The wp-config.php file is the key file that contains your database name and password. It's the file that makes the WordPress files talk with your MySQL database, where all your posts and pages are stored. wp-config.php has also been upgraded with stronger security phrases over the past couple of years.</p>
+<p>If you have a self-hosted WordPress site, FTP into your root directory and download the wp-config.php file. Then download the latest copy of WordPress from <a href="http://wordpress.org" target="_blank">WordPress.org</a> and compare the wp-config-sample.php file in the WordPress download with your version of wp-config.php. After the database, username, and password details, there should be a section of security phrases that looks as follows: </p>
+<blockquote><p>* Change these to different unique phrases!<br />
+* You can generate these using the {@link <a href="https://api.wordpress.org/secret-key/1.1/" target="_blank">https://api.wordpress.org/secret-key/1.1/</a> WordPress.org secret-key service}<br />
+*<br />
+* @since 2.6.0<br />
+*/<br />
+define ('AUTH_KEY', 'put your unique phrase here');<br />
+define ('SECURE_AUTH_KEY', 'put your unique phrase here');<br />
+define ('LOGGED_IN_KEY', 'put your unique phrase here');<br />
+define ('NONCE_KEY', 'put your unique phrase here');</p></blockquote>
+<p>If you don't have these security phrases, just go to the URL provided and the site will automatically generate random, difficult strings for each of the security phrases. Paste the phrases into your file.</p>
+<p><strong>Note: </strong>Even if you have the latest version of WordPress (2.7.1), if you've been upgrading for the last couple of years, you might have omitted upgrading the wp-config.php file, since the upgrade instructions say to leave it alone. If so, check to see if you have all the security phrases in there.</p>
+<p>I'm sure there are dozens of ways to hack a WordPress site, but certainly not having these security phrases puts your site at risk.</p>
+<p><strong>Caution:</strong> While you're editing the wp-config.php file, make sure you don't have any extra spaces at the bottom of the file. For some reason, if you have even one extra space at the bottom, you're site will show an error about retrieving "headers already sent." Also, if you add the character code enforcement at the top, you may suddenly see funny characters in your site where apostrophes and other character marks appear. Enforcing a character set is optional.</p>

@@ -1,0 +1,84 @@
+---
+layout: post
+title: Implementing Faceted Classification/Search with a Help Authoring Tool [Organizing
+  Content 7]
+date: 2010-05-21 09:24:55.000000000 -07:00
+categories:
+- findability
+- technical-writing
+tags:
+- categories
+- concepts
+- faceted classification
+- faceted navigation
+- faceted search
+- facets
+- help authoring tool
+- information architecture
+- search filter set
+- tags
+- Technical Writing
+tags:
+- series_organizing_content
+series: "Findability / organizing content"
+jtype: notes_findability_organizing_content
+weight: 1.7
+---
+{% include series/seriesTagOrganizingContent.html %}
+
+<p>In my <a href="https://idratherbewriting.com/2010/05/20/faceted-classification-faceted-search-organizing-content-6/">last post</a>, I presented faceted classification and faceted search as an alternative method of organization for help content. While faceted navigation systems are common on the web, implementing a faceted navigation system to describe help content using one of the common help authoring tools, such as Flare, RoboHelp, Author-It, Doc-to-Help,  is more challenging. </p>
+<h3>Faceted Browsing</h3>
+<p>According to Tony Self, one of the strengths of a help authoring tool (HAT) is the table of contents (TOC) feature. Through the TOC, you can easily create a quick system of navigation.</p>
+<p>It's common to use this TOC to create a system of topic-based containers for users to navigate, but there's no reason why you couldn't instead dedicate the folders to facets. In the prototype below, each of the "Browse by ... " books in the left pane represents the facets by which users can navigate the help content.</p>
+<p><figure><a href="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/2010/05/agent_browsingfacet2.png"><img class="size-full wp-image-6434" title="Faceted browsing system showing alternative methods of navigation" alt="Faceted browsing system showing alternative methods of navigation" src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/agent_browsingfacet21.png" width="600" height="773" /></a> <figcaption>Faceted browsing system showing alternative methods of navigation</figcaption></figure></p>
+<p>Users can browse the content by the following facets:</p>
+<ul>
+<li><strong>Browse by Topic.</strong> Topics are arranged in the traditional topic-based, hierarchical containers.</li>
+<li><strong>Browse by Role.</strong> Topics are arranged by role (super agent and regular agent), and then broken down by topic containers.</li>
+<li><strong>Browse by Skill Level.</strong> Topics are broken into two books, Advanced and Beginner. And then most likely broken down by topic containers.</li>
+<li><strong>Browse by Popularity. </strong>Only the top 20 most popular topics are listed.</li>
+<li><strong>Browse by Concept or Task. </strong>Topics are divided into concept and task groupings, and then probably broken down by topic containers.</li>
+<li><strong>Browse by Status. </strong>Topics are organized by facet. (In Swordfish, statuses play a prominent role for operations. Depending on the status of the operation, you can perform certain tasks, so this provides a way to organize the tasks.)</li>
+<li><strong>Browse by Help Format.</strong> Topics are divided into video, diagram, and FAQ groupings.</li>
+<li><strong>Browse by Problem. </strong>Topics are arranged by problem, somewhat like a troubleshooting grid.</li>
+<li><strong>Browse by Screen</strong>. Topics are arranged by screen. These are the context-sensitive help topics.</li>
+</ul>
+<p>Almost every HAT allows you to create multiple TOCs. Each of these facets is simply a secondary TOC that is integrated into the master TOC.</p>
+<p>One of the problems with these facets is that they don't entirely get away from the topic-based containers that I am resisting. With 200 topics, I can't simply divide all topics in the help into two groupings, such as Advanced and Beginner. A second tier facet is also necessary, and the only second-tier facet that makes sense is the topic container.</p>
+<p>However, some inclusion of topic containers isn't necessarily a bad thing. The main reason topic containers fail is because of the abundance of topics. In small help systems, the topic containers provide easy navigation and aren't as frustrating for users. The first facet, such as Advanced or Beginner, breaks down this large number of topics into a smaller subset, which makes the navigation more feasible.</p>
+<h3>Faceted Search</h3>
+<p>When a user clicks the search tab and searches for an item, the user can narrow the search results by using similar facets, as shown in the following image.</p>
+<p><figure><a href="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/2010/05/agent_searchfacet2.png"><img class="size-full wp-image-6435" title="Faceted Search" alt="Faceted Search" src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/agent_searchfacet21.png" width="600" height="777" /></a> <figcaption>Faceted Search</figcaption></figure></p>
+<p>I'm not sure how it would be implemented in other HATs, but in Madcap Flare, you can tag each topic with a keyword (this is called inserting Concepts). You can then add this set of tags/concepts below the search box by adding a "Search Filter Set" to your help.</p>
+<p>The challenge here is to provide the same facets that users get by browsing. Tags work a bit differently than TOCs, but the idea is the same. You can limit the search results by the following:</p>
+<ul>
+<li>Regular Agent Role</li>
+<li>Super Agent Role</li>
+<li>Advanced Level</li>
+<li>Beginner Level</li>
+<li>Conceptual Topics</li>
+<li>Step-by-Step Topics</li>
+<li>Most Asked About</li>
+<li>Video Format</li>
+<li>Diagram Format</li>
+<li>FAQ Topic</li>
+</ul>
+<p>Not all of the TOC facets end up as tags. The Browse by Role facet has two roles, so I can tag topics within these books as either a Regular Agent Role or Super Agent Role.</p>
+<p>The Browse by Skill Level facet has two levels, Beginner and Advanced, so I can tag the topics within this facet as Beginner Level or Advanced Level.</p>
+<p>For the Browse by Concept or Task facet, I can tag the topics as Conceptual Topics or Step-by-Step Topics.</p>
+<p>The Browse by Popularity is tagged as Most Asked About (or Most Popular).</p>
+<p>Finally, the Browse by Format allows me to tag the topics as Video Format, Diagram Format, or FAQ topic (these are the only three main formats in the help material apart from the concept/task distinction).</p>
+<h3>Shortcomings of Faceted Search</h3>
+<p>One of the most difficult problems with setting up faceted navigation is to identify facets for information topics. With merchandise or other products, you can often identify a clear set of attributes that define the product. With shoes, you can classify and filter the shoes by brand, style, color, cost, gender, sport, size, and other qualities.</p>
+<p>With Google, you can classify the content by a plethora of information formats, including news, books, videos, images, maps, discussions, shopping, blogs, twitter ("updates"), and more.</p>
+<p>In a library, you can classify books by author, publication date, genre, period, subject, book type, etc.</p>
+<p>Help topics don't seem to have a set of clearly identifiable facets. Some of the facets that you could classify a help topic with -- for example, length, format, reading level, information type, corresponding screen, etc. -- aren't that helpful to users.</p>
+<p>Help content is, however, rich in topics. But using topic tags as the attributes seems like the same game as the topic-based, hierarchical containers. For example, look at the faceted search filters that I've circled in the following image.</p>
+<p><figure><a href="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/2010/05/agent_searchfacet_toomany1.png"><img class="size-full wp-image-6437" title="Topic facets on a search for a topic seem redundant and confusing to me" alt="Topic facets on a search for a topic seem redundant and confusing to me" src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/agent_searchfacet_toomany11.png" width="600" height="777" /></a> <figcaption>Topic facets on a search for a topic</figcaption></figure></p>
+<p>If a user searches the help for "run a black operations campaign," what benefit is there in limiting the results to the facet "Related to black ops"? Won't the results already contain black ops topics?</p>
+<p>Further, what if a user searches for "coordinate informants for black ops"? Which facet would I then choose to limit the results -- <em>Related to Black Ops</em> or <em>Related to Informants</em>? It's the same problem as the topic-based, hierarchical containers.</p>
+<p>Searching for a topic and then limiting the results by topics seems redundant to me.</p>
+<p>Moreover, if these facets are simply topics, there's a likely chance that you'll include dozens of topics. Adding too many topics in the Search Filter Set will bloat the number of search facets beyond what is usable. If you look at the <a href="http://webhelp.madcapsoftware.com/flare6/">search filter set in Flare's online help</a>, you'll see that they use about 80 different topics in their search filter set, which seems excessive.</p>
+<p>It's clear that faceted classification and faceted search have benefits for many product websites, as well as for many information-heavy websites with many types of content. But the lack of a clear set of facets for help material makes it more challenging to implement in a way that is clearly beneficial.</p>
+
+{% include series/seriesTagOrganizingContent_next.html %}

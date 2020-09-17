@@ -1,0 +1,33 @@
+---
+layout: post
+title: Adding a Send Feedback link to Your Online Help / RoboHelp Project
+date: 2007-12-07 04:32:23.000000000 -08:00
+categories:
+- technical-writing
+tags:
+- feedback
+- javascript
+- online help
+- RoboHelp
+- Technical Writing
+status: publish
+
+published: true
+---
+<p>I was reading an article in a previous STC Intercom magazine about how to add a Send Feedback link to your online help project, but the javascript didn't work. Here's an alternative method that does work.  This Send Feedback link grabs the page title and URL and includes it in the e-mail that the user sends.</p>
+<p>The method below describes the integration using RoboHelp, but the principles apply to almost any online help editor.</p>
+<p>To add a Send Feedback link in your RoboHelp project:</p>
+<ol>
+<li>Right-click the Templates folder and create a new template (or access an existing one). Then expand the footer section and put your cursor where you want the link inserted.</li>
+<li>In RoboHelp 7, go to Insert &gt; HTML &gt; Advanced &gt; Scripts. Insert the following code:</li>
+</ol>
+<blockquote><p>document.write("&lt;a href="mailto:joe@support.com?subject=Application Name |  " + document.title + " | " +  location.href + ""&gt; Send Feedback&lt;/a&gt;") ;</p></blockquote>
+<p>This will put the page title and URL in the subject of the e-mail. However, I had some problems with character limits, so here's an alternative script that puts the URL in the body of the message.</p>
+<blockquote><p>document.write("&lt;a href="mailto:joe@support.com?subject=Application%20Name%20("+document.title+")%20%20File:%20"+location.href+""&gt;Send Feedback&lt;/a&gt;");</p></blockquote>
+<p>The link will now appear in every one of your topics that uses the template.</p>
+<p>If you aren't using the Insert &gt; HTML &gt; Advanced &gt; Scripts method to insert the code, then you need to include script tags around the statement.</p>
+<blockquote><p>&lt;script type="text/javascript"&gt;document.write("&lt;a href="mailto:joe@support.com?subject=Sample%20Application%20("+document.title+")&amp;body="+location.href+"%0A%0A"+""&gt;Send Feedback&lt;/a&gt;");&lt;/script&gt;</p>
+<p>&lt;script type="text/javascript"&gt; document.write("&lt;a href="mailto:joe@support.com?subject=Sample Application |  " + document.title + " | " +  location.href + ""&gt; Send Feedback&lt;/a&gt;") ;&lt;/script&gt;<br />
+ </p></blockquote>
+<p><strong>Note:</strong> In the above scripts, replace joe@support.com and Sample Application with your own email and application name. Also note that if you copy the text, the characters may not copy as displayed.</p>
+<p>How do you gather feedback from your users? I'm interested to hear if you have other scripts or techniques.</p>

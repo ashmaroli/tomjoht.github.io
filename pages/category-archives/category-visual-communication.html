@@ -1,0 +1,13 @@
+---
+title: "Visual communication"
+permalink: /category-visual-communication/
+categoryName: visual-communication
+---
+
+<p>The following content is in the <b>{{page.categoryName}}</b> category:
+
+    {% for p in site.categories.visual-communication %}
+<h4 class="categoryArchive"><a href="{{ p.url | prepend: site.baseurl }}">{{p.title}}</a> <span class="postDate"> | {{ p.date | date: "%b %-d, %Y" }}</span>
+</h4>
+{% endfor %}
+

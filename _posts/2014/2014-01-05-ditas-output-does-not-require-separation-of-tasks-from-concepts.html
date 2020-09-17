@@ -1,0 +1,46 @@
+---
+layout: post
+title: DITA's output does not require separation of tasks from concepts
+date: 2014-01-05 20:30:56.000000000 -08:00
+categories:
+- dita
+- findability
+tags: []
+status: publish
+
+published: true
+---
+<p>One of the main challenges to embracing DITA is accepting the idea that tasks and concepts should be separated. However, despite the common assumption that concepts and tasks should live separately when you follow DITA, actually it's not the case. You can combine concepts and tasks in DITA's output through your ditamap. Additionally, you can even combine concepts and a single task in a "general task" dita topic.</p>
+<h2>Tasks versus concepts</h2>
+<p>Pretty much any tutorial you read about DITA starts off by defining DITA's three main topic types: concept, task, and reference. When you author DITA content, these topic types impose certain limitations about tags that are and aren't allowed.</p>
+<p>With concepts, you cannot include the <code>steps</code> tags (used extensively with tasks). With tasks, you cannot include the <code>section </code>tag. Although you can include brief conceptual content in a task in the <code>shortdesc</code>, <code>context</code>, and <code>prereq</code> tags, the bulk of the conceptual material is shifted into a concept file.</p>
+<p>This separation of tasks from concepts in the <em>building blocks</em> of DITA is fine, because your dita files aren't the same as your output files. In your ditamap file, which defines how each of these components is arranged in the output, you can combine concepts and tasks to your heart's content.</p>
+<p>For example, here's a ditamap file that combines five subtasks into one article:</p>
+<p>{% highlight xml %}</p>
+<p><topicref href="admin_console/rewards/managing_contests.dita" chunk="to-content"><br />
+   <topicref href="admin_console/rewards/create_a_contest.dita" toc="no"/><br />
+   <topicref href="admin_console/rewards/end_a_contest.dita" toc="no"/><br />
+   <topicref href="admin_console/rewards/find_contest_winners.dita" toc="no"/><br />
+   <topicref href="admin_console/rewards/export_contest_winners.dita" toc="no"/><br />
+   <topicref href="admin_console/rewards/archive_a_contest.dita" toc="no"/><br />
+ </topicref></p>
+<p>{% endhighlight %}</p>
+<p>The <code>chunk="to-content"</code> attribute says to combine the children with the parent. The parent is denoted by the lack of a closing <code>/></code>. All contained topicrefs are thus included as children to this topicref, until the closing <code></topicref></code>.</p>
+<p>In the output, users will see just one file: "Managing Contests." This file probably includes some conceptual information about contests followed by 5 tasks: Create a Contest, End a Contest, Find Contest Winners, Export Contest Winners, and Archive a Contest.</p>
+<p>Sure, my source files have 6 different DITA files, but the output is just one article.</p>
+<p>One reason so many people mistake the architecture of the source files with the architecture of the output files is because the term "topic" tends to get used for both situations. I prefer to call the output files "articles" rather than topics. An article might consist of several topics. Each of those topics might be of several different types: concept, task, or reference.</p>
+<p>If DITA tutorials were a bit more explicit in differentiating between source file architecture and output architecture, we wouldn't end up with so much confusion. There would be fewer DITA-authored help files that fragment information into lots of tiny files, and the user experience would improve.</p>
+<h2>Reasons to combine concepts and tasks in the output</h2>
+<p>One might ask, why <i>not</i> separate concepts from tasks? After all, isn't a minimalist design philosophy task-oriented, so help should mainly consist of standalone tasks? We want to get all the conceptual information out of the way so users can do the task they need, right?</p>
+<p>In some cases, it may make sense to separate out tasks into their own articles. In other cases it might not. It all depends on the material. If it seems like the material belongs in the same article, like the example I described above, where the tasks are pretty short, then combine them. If not, if the tasks are longer and more elaborate, separate them into their own articles.</p>
+<p><figure><img src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/concept_and_task.png" alt="Sometimes concepts and tasks belong together." width="389" height="418" class="size-full wp-image-19972" /> <figcaption>Sometimes concepts and tasks belong together. If that's the case, combine them in the ditamap.</figcaption></figure></p>
+<p>When you start separating some information into one article simply because it consists of conceptual paragraphs, and you put other information into another article because it's a list of steps, even though both the concept and steps go together like a pair of shoes, you end up fragmenting the help information. You force users to jump around from article to article, trying to find all the information necessary to achieve their goal. Mark Baker calls this fragmented output a <a href="http://everypageispageone.com/2012/02/24/frankenbooks-must-die-a-rant/">frankenbook</a>.</p>
+<p>DITA isn't built on any kind of learning theory propounding that separating tasks from concepts in the output improves the user experience. Certainly many users are task-oriented because they're trying to perform a goal, no question. But performing that goal often requires more than starting at step one. Often the conceptual information is the information the user needs to complete a goal. More complicated processes are not often reduced to a list of steps. </p>
+<p>In other words, an action-oriented approach doesn't mean you marginalize conceptual information, splitting it off from tasks.</p>
+<p>A few people have written about the information fragmentation problem that DITA's separation of task, concept, and reference create. See this seminal post by Mark Baker: <a href="http://everypageispageone.com/2012/07/28/the-tyranny-of-the-terrible-troika-rethinking-concept-task-and-reference/">The Tyranny of the Terrible Troika: Rethinking Concept, Task, and Reference</a>.</p>
+<p>And this thought-provoking post by Ruth Haworth: <a href="http://focusonreaders.blogspot.ca/2012/07/case-study-dita-topic-architecture.html">Case study: DITA topic architecture</a>. Ruth's post is particularly poignant because she gathers direct feedback about the poor user experience resulting from information fragmentation.</p>
+<p>See also this post by Jonatan Lundin, <a href="http://excosoft.com/users-always-learning-mode-minimalism-tells-us/">Are users always in learning mode, as minimalism tells us?</a>.</p>
+<p>Also, I previously wrote a post called <a href="https://idratherbewriting.com/2013/04/22/does-dita-encourage-authors-to-fragment-information-into-a-million-little-pieces/">Does DITA encourage authors to fragment information into a million little pieces?</a> (If you can read through all 98 comments on that post in one sitting, my hat is off to you.)</p>
+<h2>Summary</h2>
+<p>In summary, remember that there's a difference between source file architecture and output architecture. Although the concepts and tasks may be separated in the source files, they can easily be combined in the output files through the ditamap. (If DITA had a information model that prohibited combining tasks with concepts, the DITA developers wouldn't allow and validate the structure in the ditamap.)</p>
+<p>By the way, in addition to the task, concept, and reference, there are actually several other topic types introduced with DITA 1.2. There's a <a href="http://docs.oasis-open.org/dita/v1.2/os/spec/langref/glossentry.html">glossentry type</a>, a <a href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/dita_machinerytask_topic.html">machinery task topic</a>, a <a href="http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/dita_spec_intro_bookmap.html">bookmap topic</a>, and more.</p>

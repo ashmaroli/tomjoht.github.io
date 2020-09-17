@@ -1,0 +1,194 @@
+---
+layout: page
+title: 'DITA: Create a content filter to dynamically filter content'
+permalink: /jquery_content_selector/
+date: 2014-12-27 15:16:06.000000000 -08:00
+jtype: notes_dita
+description: "You can include a content selector that allows users to toggle content on or off. This
+is useful if, for example, you have some content you want to show or hide from users, such as code
+snippets for a particular programming language."
+---
+{% include notes.html %}
+<div class="body taskbody">
+<p class="shortdesc"> </p>
+<div class="section context">
+<p>For example, suppose your content has four programming language code snippets. You want to
+        allow your users to select one language and have all the rest be hidden. You can add a
+        content selector to your output so that users can select the type of content they want to
+        see. </p>
+{{tip}} For a demo, see <a class="xref external" href="https://s3.us-west-1.wasabisys.com/idbwmedia.com/files/oxygendemos/contentselector/" target="_blank">the content selector demo page</a>.{{end}}
+<p>This content selector is a style switcher developed by hibbard.eu explained here: <a class="xref external" href="http://hibbard.eu/using-cookies-with-jquery-to-make-a-simple-style-switcher/" target="_blank">Using cookies with jQuery to make a simple style switcher</a>. Although there are a variety of jQuery style switchers available, I like this one because it implements the jQuery cookie to remember the user's selection from page to page. This is critical for the content selector to work site-wide. (Without the cookie, the user would need to re-select an option with each new page.</p>
+</p></div>
+<p class="li stepsection">To implement the content selector:</p>
+<ol class="ol steps">
+<li class="li step stepexpand">
+   <span class="ph cmd">In a text editor, open the web_topic.js file found in the following directory: <span class="ph filepath">[Oxygen Install Directory]/frameworks/dita/DITA-OT/plugins/com.oxygenxml.webhelp/oxygen-webhelp/resources/js</span></span></li>
+<li class="li step stepexpand"><span class="ph cmd">Before the closing <code>)};</code>, add the following script:</span>
+<div class="itemgroup stepxmp">
+{% highlight xml %}
+   function removeAddBodyClass(){
+    <em class="hl-comment" style="color:#006400">/* For topics loaded in iFrame */</em>
+    $(<span class="hl-string" style="color:#2a00ff">"body"</span>).removeClass();
+    $(<span class="hl-string" style="color:#2a00ff">"body"</span>).addClass($.cookie(<span class="hl-string" style="color:#2a00ff">'body_colour'</span>));
+    <em class="hl-comment" style="color:#006400">/* For TOC */</em>
+    $(<span class="hl-string" style="color:#2a00ff">"#bck_toc"</span>, parent.document).removeClass();
+    $(<span class="hl-string" style="color:#2a00ff">"#bck_toc"</span>, parent.document).addClass($.cookie(<span class="hl-string" style="color:#2a00ff">'body_colour'</span>));
+}
+    
+    removeAddBodyClass();
+    
+    $(<span class="hl-string" style="color:#2a00ff">"#selector"</span>).change(function(){
+    $.cookie(<span class="hl-string" style="color:#2a00ff">'body_colour'</span>, $(<span class="hl-string" style="color:#2a00ff">"#selector"</span>).val());
+    removeAddBodyClass();
+    });
+    
+    $(<span class="hl-string" style="color:#2a00ff">"#selector > option"</span>).each(function() {
+    if($(this).val() == $.cookie(<span class="hl-string" style="color:#2a00ff">'body_colour'</span>)){
+    $(this).attr(<span class="hl-string" style="color:#2a00ff">"selected"</span>,<span class="hl-string" style="color:#2a00ff">"selected"</span>); 
+    }
+    });
+    {% endhighlight %}
+<p>This script is from the demo download zip file available on <a class="xref external" href="http://hibbard.eu/using-cookies-with-jquery-to-make-a-simple-style-switcher/" target="_blank">Hibbard's site.</a> (Scroll
+            to the bottom of the page where you can download the demo as a zip file; then open one
+            of the HTML files to see the script.) There is one modification, though. I added the
+              <code>#bck_toc", parent.document</code> triggers to apply the same adding and
+            removing of classes to the table of contents. This is because OxygenXML's output puts
+            the TOC and the body in separate frames. </p>
+</p></div>
+</li>
+<li class="li step stepexpand"><span class="ph cmd">Save the file.</span>
+<div class="itemgroup info">
+{{note}}You'll notice that the zip download also contains a jQuery cookie file. This is the general cookie plugin for jQuery. Fortunately, OxygenXML already includes this jQuery script, which you can verify by looking in the <span class="ph filepath">[Oxygen Install Directory]/frameworks/dita/DITA-OT/plugins/com.oxygenxml.webhelp/oxygen-webhelp/resources/js</span> directory.{{end}}
+</p></div>
+</li>
+<li class="li step stepexpand"><span class="ph cmd">By default, attributes you add to content, such as <code>platform="java"</code> won't
+          appear in the output (they're stripped out entirely). We need to hack Oxygen's webhelp
+          XSLT to allow these tags to pass through. In a text editor, open the dita2htmllmpl.xsl
+          file found in the following directory: <span class="ph filepath">[Oxygen Install
+            Directory]/frameworks/dita/DITA-OT/plugins/org.dita.xhtml/xsl/xslhtml</span>.</span>
+   </li>
+<li class="li step stepexpand"><span class="ph cmd">Locate the line that begins "<xsl:template name="commonattributes">" and replace that
+     section with the following:</span></p>
+<div class="itemgroup stepxmp">
+{% highlight xml %}
+  <xsl:template name="commonattributes">
+    <xsl:param name="default-output-class"/>
+    <xsl:apply-templates select="@xml:lang"/>
+    <xsl:apply-templates select="@dir"/>
+    <xsl:apply-templates select="*[contains(@class, '
+      ditaot-d/ditaval-startprop ')]/@outputclass" mode="add-ditaval-style"/>
+    <xsl:apply-templates select="." mode="set-output-class">
+      <xsl:with-param name="default" select="$default-output-class"/>
+    </xsl:apply-templates>
+    <xsl:if test="@audience">
+      <xsl:attribute name="data-audience"><xsl:value-of
+        select="@audience"/></xsl:attribute>
+    </xsl:if>
+    <xsl:if test="@platform">
+      <xsl:attribute name="data-platform"><xsl:value-of
+        select="@platform"/></xsl:attribute>
+    </xsl:if>
+    <xsl:if test="@id">
+      <xsl:attribute name="id"><xsl:value-of
+        select="@id"/></xsl:attribute>
+    </xsl:if>
+  </xsl:template>
+     {% endhighlight %}
+<p>This will allow the <code>platform</code>,
+       <code>audience</code>, and <code>id</code> attributes to pass through as attributes in
+      the output (so you can leverage them). Without these attributes in the output, you won't be
+      able to select the content. </p>
+<p>Note that in the future, this hack may be unnecessary. The ditaval file allows you to add a <code>passthrough</code> attribute to elements, but this attribute does not work in Oxygen's webhelp output.</p>
+</p></div>
+</li>
+<li class="li step stepexpand"><span class="ph cmd">Go to your custom skin's stylesheet. Near the bottom, add the following styles: </span>
+<div class="itemgroup stepxmp">
+{% highlight xml %}
+     <em class="hl-comment" style="color:#006400">/* by default, java is shown because on initial page load, we don't want blank spaces with no code.*/</em>
+#bck_toc li.cpp, #bck_toc li.dotnet, #bck_toc li.php, body [data-platform*=cpp], body [data-platform*=dotnet], body [data-platform*=php] {
+    display: none;
+}
+body.java [data-platform*=java] {
+    display: block!important;
+}
+body.java .ph[data-platform*=java] {
+    display: inline!important;
+}
+#bck_toc.java li.java, body.cpp [data-platform*=cpp] {
+    display: block!important;
+}
+body.cpp .ph[data-platform*=cpp] {
+    display: inline!important;
+}
+#bck_toc.cpp li.cpp {
+    display: block!important;
+}
+#bck_toc.cpp li.java, body.cpp [data-platform*=java] {
+    display: none;
+}
+body.dotnet [data-platform*=dotnet] {
+    display: block!important;
+}
+body.dotnet .ph[data-platform*=dotnet] {
+    display: inline!important;
+}
+#bck_toc.dotnet li.dotnet {
+    display: block!important;
+}
+#bck_toc.dotnet li.java, body.dotnet [data-platform*=java] {
+    display: none;
+}
+body.php [data-platform*=php] {
+    display: block!important;
+}
+body.php .ph[data-platform*=php] {
+    display: inline!important;
+}
+#bck_toc.php li.php {
+    display: block!important;
+}
+#bck_toc.php li.java, body.php [data-platform*=java] {
+    display: none;
+}
+    
+    
+    #progSelector {
+    margin-left:<span class="hl-number">600</span>px;
+    
+    }
+    {% endhighlight %}
+<p>You will need to adjust this code depending on the classes you're adding. For example, if you don't want your four selections to be java, php, dotnet, and cpp, swap in the classes you intend to use. Also, if you're not using platform but rather product or audience, make that switch as well.</p>
+<p>Basically, here's a summary of what's going on with this CSS. By default, the content selector doesn't have an initial selection. In this example, anything tagged with the class <code>cpp</code>, <code>dotnet</code>, or <code>php</code> will initially be hidden, but not <code>java</code>. This is because we don't want blank spaces in the code to appear before the user selects something in the content selector. (By the way, make sure that the default content that appears (e.g., java) is first in your selector's options. This step is described later).</p>
+<p>When a user makes a selection from the selector, the jQuery script adds a class to the <code>body</code> element. The selector <code>body.cpp [data-platform*="cpp"]</code> says for anything inside the <code>body</code>element with the <code>cpp</code> class that also has the attribute of <code>data-platform=cpp</code>, then apply this style.</p>
+<p>When a user makes a selection, we want to display content with that data attribute, so we set <code>display:block</code>. We also hide the <code>java</code> (which was never hidden by default). For any non-block level items, we want to set their display as <code>display:inline</code> rather than <code>block</code> so that we don't end up with paragraph breaks for inline elements. Right now only <code>ph</code> elements are set as <code>display:inline</code>, but if there are others, add them there following the same pattern. (Unfortunately, in the world of CSS, there is no opposite to <code>display:none</code> -- only <code>display:block</code> or <code>display:inline</code>.</p>
+<p>The <code>.ph[data-platform*="java"]</code> selector means that for any <code>ph</code> classes that contain an attribute of <code>data-platform</code>, apply this style.</p>
+</p></div>
+</li>
+<li class="li step stepexpand"><span class="ph cmd">Add a selector in your header file to allow users to select the content they want to see. To do this, create a new XHTML file and add the following: </span>
+<div class="itemgroup stepxmp">
+{% highlight xml %}
+<p id="progSelector">Select your programming language: <select id="selector">
+    <option value="java">Java</option>
+    <option value="dotnet">.NET</option>
+    <option value="cpp">C++</option>
+    <option value="php">PHP</option>
+</select></p>
+   {% endhighlight %}
+<p>Replace the options with whatever you want. Just keep in mind that the values must match your classes. Also, by default, the first option will appear in the selector, even though the user hasn't actually made that selection. This is why <code>java</code> is not hidden by default in the styles.</p>
+</p></div>
+</li>
+<li class="li step stepexpand"><span class="ph cmd">In OxygenXML, open your map file, click the <span class="ph uicontrol">Configure Transformation Scenarios</span> button, and duplicate the DITA Map Webhelp output.</span></li>
+<li class="li step stepexpand"><span class="ph cmd">Edit the copy, click the <span class="ph uicontrol">Parameters</span> tab, and in the <span class="ph uicontrol">args.hdf</span> option, browse to the XHTML file you created.</span></li>
+<li class="li step stepexpand"><span class="ph cmd">When you create content, add <code>platform="java"</code> and such to your content. Users will be able to select the attributes they want.</span></li>
+<li class="li step stepexpand">
+        <span class="ph cmd">For the ditamap file, instead of addding <code>platform="java"</code>, you must use
+            <code>outputclass="java"</code>. This is because the DITA OT processes the TOC
+          differently from the rest of the content, and any platform/data tags get stripped out of
+          the output.</span>
+      </li>
+</ol>
+<div class="section postreq">
+{{note}} Note that in order to see the content selector work, you must upload the content to a web server. On a Mac, because there's a built-in web server, you can go to <span class="ph filepath">Library > Webserver > Documents</span>. If you put your webhelp in this folder, in a browser you can go to <code>localhost/<folder name></code> to view the content.{{end}}
+</p></div>
+</p></div>
+

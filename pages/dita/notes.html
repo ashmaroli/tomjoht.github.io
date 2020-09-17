@@ -1,0 +1,26 @@
+---
+layout: page
+title: 'DITA: Notes'
+permalink: /notes/
+date: 2014-12-27 15:16:06.000000000 -08:00
+jtype: notes_dita
+description: "Notes are tips, notes, cautions, and other admonition statements that you provide to
+users.  Notes can appear inside most elements."
+---
+<div class="body conbody">
+<div class="p">
+{% highlight xml %}<note type="tip">Don't fasten the bolts too tightly. First make sure all the pieces
+fit well together, and then tighten them down firmly.</note>{% endhighlight %}
+</p></div>
+<p>There are actually quite a few options for note types: attention, danger, fastpath, important, notice, other, remember, restriction, tip, warning.</p>
+<p>Some of the types have different icons and formatting associated with them. All of notes
+   transform to HTML with a class corresponding with their name. </p>
+<p>If you're adding a note inside a task list, add the note inside the <code>info</code>
+   element.</p>
+<div class="p">If you want a title to preface the note, use the <code>fig</code>
+   element:
+{% highlight xml %}<fig><title>Bolt Warning</title>
+<note type="tip">Don't fasten the bolts too tightly.
+First make sure all the pieces fit well together, and then tighten them down firmly.</note>
+</fig>{% endhighlight %}
+</div></div>

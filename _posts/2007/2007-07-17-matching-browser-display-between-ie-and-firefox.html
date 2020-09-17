@@ -1,0 +1,39 @@
+---
+layout: post
+title: Resolving Browser Display Discrepancies Between IE and Firefox
+date: 2007-07-17 01:47:00.000000000 -07:00
+categories:
+- technical-writing
+- web-design
+- wordpress
+tags: []
+status: publish
+
+published: true
+---
+<p><img title="IE and Firefox browsers have CSS discrepancies" src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/browsers211.jpg" alt="IE and Firefox browsers have CSS discrepancies" hspace="5" vspace="5" align="right" />When you begin modifying your blog's stylesheet or designing your own blog, you may notice that some elements display differently in Internet Explorer (IE) than they do in Firefox. IE is usually the problematic browser, and it's hard to say why there are so many CSS display quirks and bugs from Microsoft. But there is a quick, easy fix around the troubling display discrepancies.</p>
+<p>In short, you create two stylesheets, one for IE and one for Firefox and other browsers. You then add a piece of code in your header that tells to the IE browser to read the IE style sheet. The other browsers will read the other stylesheet.</p>
+<p>To create separate stylesheets for the different browsers:<br />
+</p>
+<p>1. Duplicate your current stylesheet and change the name to something like ie7.css.</p>
+<p>2. In your header file, locate the current call to your stylesheet. It should look something like this:<br />
+&lt;style type="text/css" media="screen"&gt; @import<br />
+url( &lt;?php bloginfo('stylesheet_url'); ?&gt; );<br />
+&lt;/style&gt;<br />
+Delete this call to your style sheet.</p>
+<p>3. In the place where you deleted the style sheet call, add this code instead:<br />
+&lt;![if IE]&gt;&lt;link rel="stylesheet" type="text/css"<br />
+href="http://blog.com/wp-content/themes/simpla/ie7.css"&gt;<br />
+&lt;![endif]&gt;</p>
+<p>&lt;![if !IE]&gt;&lt;link rel="stylesheet" type="text/css"<br />
+href="http://blog.com/wp-content/themes/simpla/style.css"&gt;<br />
+&lt;![endif]&gt;<br />
+4. Customize the paths to your style sheets. The first code snippet says, if the browser is IE, use the ie7.css stylesheet. The second code snippet says, if the browser is not IE, use the style.css stylesheet.</p>
+<p>With this method, you have two style sheets to maintain, so keep this in mind when making updates. However, you'll be able to easily adjust the styles for the troublesome IE browser.</p>
+<h3>Additional Resources</h3>
+<ul>
+<li><a title="source article" href="http://www.kristensguide.com/Website_Design/separate_ie_firefox_stylesheets.asp" target="_blank">Creating Separate Stylesheets for Internet Explorer and Firefox</a>. This site is where this tip comes from -- thanks Kristen.</li>
+<li><a title="Blog Herald article" href="http://www.blogherald.com/2007/07/12/browser-specific-style-for-your-wordpress-theme/" target="_blank">Browser Specific Style for your WordPress Site</a>. This article outlines a slightly different method that didn't work for me, but it was still worthwhile.</li>
+<li><a title="Firefox Web Developer Extension" href="https://addons.mozilla.org/en-US/firefox/addon/60https://addons.mozilla.org/en-US/firefox/addon/60" target="_blank">Firefox Web Developer Extension</a>. The most useful CSS tool for adjusting your CSS.</li>
+<li><a title="IE Developer Toolbar" href="http://www.microsoft.com/downloads/details.aspx?familyid=e59c3964-672d-4511-bb3e-2d5e1db91038&amp;displaylang=en" target="_blank">Internet Explorer Developer Toolbar</a>. IE's equivalent to the Firefox Developer extension. It's not as user friendly and doesn't work in exactly the same way, but it can also be useful.</li>
+</ul>

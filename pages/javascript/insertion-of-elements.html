@@ -1,0 +1,63 @@
+---
+layout: page
+title: 'JavaScript: Insertion of Elements'
+permalink: /insertion-of-elements-javascript/
+categories:
+- java
+jtype: notes_javascript
+---
+
+<p>You can change an element's attributes (style), insert HTML into the element, or insert/create new elements in specific places.</p>
+<h2>Changing an Element's Attributes</h2>
+<p>You can change attributes of specific elements. To change an element's attributes, you first get the element, set it as a variable, and then use the <code>setAttribute</code> method to change its attributes. Here's an example:</p>
+<p>{% highlight javascript %}//get the element
+var contentSubhead = document.getElementById("contentSubhead");
+//set an attribute for the element
+var .contentSubhead.setAttribute("align","right");{% endhighlight %}</p>
+<p>The <code>setAttribute</code> method has two values. You first list the name of the attribute you want to change, and then you list the value.</p>
+<h2>Applying Styles</h2>
+<p>You can also apply styles directly to elements. However, because JavaScript doesn't use hyphens or underscores, the CSS style names that are usually hyphenated (like <code>background-color</code> become one word with camel casing: <code>backgroundColor</code>.</p>
+<p>To apply an inline style to an element, use the following format:</p>
+<p>{% highlight javascript %}//set the title ID as a variable
+var title = document.getElementByID("title");
+//apply a new width to the title
+title.style.backgroundColor = "#dedede";
+}{% endhighlight %}</p>
+<h2>Changing the Contents of an Element</h2>
+<p>To change the actual contents of an element, you use the <code>innerHTML</code> method.</p>
+<p>You can see what the inner HTML is for an element by running this console.log message in Firebug:</p>
+<p>{% highlight javascript %}//set the contentSubhead ID as a variable
+var contentSubhead = document.getElementById("contentSubhead");
+//see what the inner HTML contains
+console.log(contentSubhead.innerHTML); {% endhighlight %}</p>
+<p>The preceding statement allows you to view the inner HTML. To <em>change</em> the inner HTML, use a statement such as this:</p>
+<p>{% highlight javascript %}//set the ID as a variable
+var contentSubhead = document.getElementById("contentSubhead");
+//change the inner HTML to this new string.
+contentSubhead.innerHTML = "The new text for the element...";{% endhighlight %}</p>
+<h2>Adding New Elements</h2>
+<p>You can also insert an entirely new element into the DOM. To insert a new element, follow these two steps:</p>
+<ol>
+<li>Create the element.</li>
+<li>Add the new element to the DOM</li>
+</ol>
+<p>You create a new element by using the <code>createElement</code> method with the Document object:</p>
+<p>{% highlight javascript %}//create a new h2 element called sideHead
+var sideHead = document.createElement("h2");{% endhighlight %}</p>
+<p>Once you create the element, you now need to append it somewhere. To append the new element, use the <code>appendChild</code> method:</p>
+<p>{% highlight javascript %}//create a new h2 element called sideHead
+var sideHead = document.createElement("h2");
+//add new inner HTML for sideHead
+sideHead.innerHTML = "Did you know?";
+//append the sideHead element to the sidebar ID section
+document.getElementById("sidebar").appendChild(sideHead);{% endhighlight %}</p>
+<p>There's another method for inserting a new element. Rather than creating new innerHTML to insert, you can insert a new text node by using the <code>createTextNode</code> method.</p>
+<p>{% highlight javascript %}//create a new p element called newSection
+var newSection = document.createElement("p");
+//create a new text node called pText
+var pNewText = document.createTextNode("Did you know?");
+//append the new text node on the newSection element
+newSection.appendChild(pNewText);
+//insert the text node into the newSection section
+document.getElementById("sidebar").appendChild(newSection);{% endhighlight %}</p>
+<p>This statement will append the newly created text node (<code>"Did you know?"</code>) on the <code>newSection</code> paragraph element.</p>

@@ -1,0 +1,40 @@
+---
+layout: page
+title: 'DITA: Variables'
+permalink: /variables/
+date: 2014-12-27 15:16:06.000000000 -08:00
+jtype: notes_dita
+description: "DITA doesn't have an actual variables element, but you can use keyref to accomplish the
+same thing."
+---
+{% include notes.html %}
+<div class="body conbody">
+<p>A variable is a symbol that represents something else. You might use the variable
+   product_name so that if you're product name switches, you don't have to update all instances of
+   the product name in your documentation. You can just update what the variable product_name points
+   to.</p>
+<div class="p">In your map file, add the
+   following:
+{% highlight xml %}  <keydef keys="product_name">
+   <topicmeta>
+    <keywords>
+     <keyword>ACME</keyword>
+    </keywords>
+   </topicmeta>
+  </keydef>{% endhighlight %}
+</div>
+<div class="p">In your topic file, reference the variable with the
+   following:
+{% highlight xml %}Congratulations on the purchase of <keyword keyref="product_name"/>. {% endhighlight %}
+</div>
+<div class="p">You can event put attributes on the keyword so that different product names appear based on
+   different conditional processing.</p>
+{% highlight xml %} <keydef keys="product_name">
+   <topicmeta>
+    <keywords>
+     <keyword audience="UK">ACME</keyword>
+     <keyword audience="USA">Gizmo</keyword>
+    </keywords>
+   </topicmeta>
+  </keydef>{% endhighlight %}
+</div></div>

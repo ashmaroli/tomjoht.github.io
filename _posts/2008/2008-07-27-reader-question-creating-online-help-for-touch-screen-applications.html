@@ -1,0 +1,23 @@
+---
+layout: post
+title: 'Reader Question: Creating Online Help for Touch-Screen Applications?'
+date: 2008-07-27 23:23:48.000000000 -07:00
+categories:
+- technical-writing
+tags:
+- Technical Writing
+status: publish
+
+published: true
+---
+<p>A reader asks,</p>
+<blockquote><p>I caught your blog online and have been enjoying reading through the posts. I was wondering if you came across any information regarding creating usable online help for touch-screen applications. I found one article that talked about using RoboHelp to create drop-down hotspots and context-sensivitity to lessen the need for the standard clickable TOC navigation (since on a touch screen, you wouldn't have the benefit of a keyboard and mouse). What we have right now can be improved. We have a hyperlinked TOC that is just too small for anyone to click on. We have Frame and will be getting RoboHelp. We want to be able to leverage the same source file to create the online help and a printed guide.</p>
+<p>Just wondered if you've encountered or heard about anyone writing for touch-screen apps.</p>
+<p>thanks,</p>
+<p>Hannah</p></blockquote>
+<p>Hannah,</p>
+<p>You might look at how the iPhone delivers help. RoboHelp won't give you anything special that other online help authoring tools don't already deliver. If you're planning to use a lot of drop-down hotspots, RoboHelp's only advantage is that it allows you to <a href="https://idratherbewriting.com/2007/11/28/sample-integration-of-captivate-screen-demos-in-robohelp-hotspots/">embed Captivate movies inside hotspots</a>. However, RoboHelp's hotspots lack twisties (little triangles that twist down when clicked), so they're not as user friendly. Still, RoboHelp is a fine application for delivering online help.</p>
+<p>If you're hoping to single source a printed manual and online help, you need a different tool (unless you're good with Word macros). <a href="http://madcapsoftware.com/products/flare/" target="_blank">Madcap Flare</a> does a much better job than RoboHelp. <a href="http://authorit.com" target="_blank">AuthorIt</a> also does well.</p>
+<p>But single sourcing seems a tangent from your initial question about touch-screen help. For touch-screen help, I recommend keeping the topics short, because I imagine the user is frequently standing or mobile. I also recommend supplying both a printed manual and quick reference guide, since the touch-screen interface may be too small to accommodate long text or graphics in a comfortable way.</p>
+<p>If you do include help in the application, yes, make sure it's context sensitive, because the user probably can't open a help window and resize it next to the application interface. An online help file does offer searchability on the fly, but if the user can't type on a keyboard, there's little point in that, so make sure your printed manual has a good index.</p>
+<p>Finally, all the touch-screen devices I've ever used have been small, so the help content may not single source anyway. For example, if you're writing instructions for a touch-screen panel that controls a projector, the application's help may be brief, such as 3-4 sentences only. But the printed manual may elaborate with more detail, including screenshots, diagrams, and longer explanations. If that's the case (that the online help and manual don't single source), then your RoboHelp/Frame solution will work fine.</p>

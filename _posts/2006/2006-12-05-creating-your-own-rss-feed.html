@@ -1,0 +1,20 @@
+---
+layout: post
+title: Creating your own RSS Feed
+date: 2006-12-05 22:39:05.000000000 -08:00
+categories:
+- technical-writing
+- web-design
+tags: []
+status: publish
+
+published: true
+---
+<p>If you have a traditional website, you can still create an RSS feed for it. The feed file is incredibly simple -- see this site: <a href="http://searchenginewatch.com/showPage.html?page=2175271">http://searchenginewatch.com/showPage.html?page=2175271</a></p>
+<p>Basically the RSS files consists of just a few tags: title, description, and link. Each of these three tags is nested in an item tag. All the items collectively are nested in a channel tag. And then there are some generic statements at the top, and a closing rss tag at the bottom. Here are some other resources in creating an RSS file:</p>
+<p class="MsoNormal"><a name="OLE_LINK2"></a><strong><a name="OLE_LINK1"></a>Create your feed by filling in a form: </strong><span><a href="http://www.webdevtips.co.uk/webdevtips/codegen/rss.shtml">http://www.webdevtips.co.uk/webdevtips/codegen/rss.shtml</a></span></p>
+<p class="MsoNormal">Strangely, the feed generator added a line of code at the top that made the feed invalid. Easily delete it, though.<a href="http://www.webdevtips.co.uk/webdevtips/codegen/rss.shtml"><span><span /></span></a></p>
+<p class="MsoNormal"><strong>Validate your feed: </strong><a href="http://feedvalidator.org/">http://feedvalidator.org<span /></a></p>
+<p>XML doesn't allow any errors, so if you messed up one tag, the entire feed doesn't show. That's why it's important to validate the feed.</p>
+<p><strong>Convert RSS feed to Javascript so you can paste into an HTML site:</strong> <a href="http://www.rss-to-javascript.com/p/138.html">http://www.rss-to-javascript.com/p/138.html</a> If you use SharePoint, you can add an RSS feed to it easily via the Smiling Goat Feedreader Web part. Only one major flaw: the Smiling Goat Feedreader doesn't support authenticated feeds. To me, this makes the feedreader almost worthless, because I bet most people use SharePoint behind the company firewall -- in other words, on servers requiring authentication. The only way to get the feedreader to work is by putting your feed file on a public-accessible server. Perhaps the programmers felt this would encourage corporate transparency.</p>
+<p>Feeddigest.com also allows you to combine different feeds, but only up to 5. After that, it's a paid model. However, the aggregated feeds are stylish and integrate easily into your site.</p>

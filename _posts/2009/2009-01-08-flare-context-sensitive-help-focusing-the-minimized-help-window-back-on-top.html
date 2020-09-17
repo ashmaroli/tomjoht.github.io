@@ -1,0 +1,37 @@
+---
+layout: post
+title: Flare Context Sensitive Help – Focusing the Minimized Help Window Back on Top
+date: 2009-01-08 23:00:07.000000000 -08:00
+categories:
+- technical-writing
+tags:
+- context-sensitive help
+- Eddie VanArsdall
+- Flare
+- javascript
+- Technical Writing
+status: publish
+
+published: true
+---
+<p>Context-sensitive help in Madcap Flare is pretty easy to set up – you just follow the steps in Flare's <a href="http://www.madcapsoftware.com/support/webhelp/flare/Content/CSH/About_Context_Sensitive_Help.htm">context-sensitive help</a> instructions. However, there's a usability problem that you must work around for the context-sensitive help to be successful.</p>
+<p>Let me explain. When the user clicks a context-sensitive help link, a help window appears, as it should. But suppose the user doesn't close the help window, but instead clicks back to the application. The help window minimizes. Now the user then clicks another context-sensitive help link. The new help topic loads in the existing help window, sure enough, <em>but that help window remains minimized.</em> The minimized help window doesn't automatically come to focus on top. As a result, the user thinks the help link is broken.</p>
+<p>Fortunately, the solution is simple. </p>
+<ol>
+<li>Go to <strong>C:Program FilesMadCap SoftwareMadCap Flare V4Flare.appResourcesWebHelp</strong> or wherever you installed Flare.</li>
+<li>Open <strong>Default.js </strong>in Notepad.</li>
+<li>Search for <strong>window.open( cshString, "_MCWebHelpCSH", browserOptions + size );</strong> and delete it. Note: If you copy this string from this post, make sure you retype the quotation marks, since my stylesheet renders then as curly quotes instead. The quotation marks should be straight.</li>
+<li>Insert these two lines in its place:</li>
+<blockquote><p><strong>var newWindow = window.open( cshString, "_MCWebHelpCSH", browserOptions + size );</strong></p>
+<p><strong>newWindow.focus();</strong></p>
+<p>Note: See note in step3 about making the curly quotation marks straight. Otherwise it won't work.</p></blockquote>
+<li>Completely wipe away the previously published target and reupload or republish your files.</li>
+</ol>
+<p>Now when the user clicks subsequent context-sensitive help links, even if the help window is minimized, it will come to focus on top. Perfect.</p>
+<p><strong>Tip:</strong> If you use Madcap Flare, I highly recommend that you subscribe to <a href="http://www.vanarsdall-infodesign.com/">Eddie VanArsdall's blog: Simplifying Complexity</a>. Eddie is a certified Flare instructor and provides tips about Flare on his blog.</p>
+<p><strong>Note: </strong>As always, Flare doesn't support changes to the core files. When you upgrade to Flare 4.2, your changes will be lost. In that case, keep this post handy.</p>
+<h3>Coding the Javascript Help Link</h3>
+<p>By the way, if you read Flare's instructions for implementing context-sensitive help in a web application, the javascript example is generally given as follows:</p>
+<blockquote><p>&lt;input type="button" value="Open Help System" onclick="FMCOpenHelp( 1000, null, null, null );" /&gt;</p></blockquote>
+<p>This link creates a button. If you don't want the button, code the javascript link like this:</p>
+<blockquote><p>&lt;a href="javascript:FMCOpenHelp (1000, null, null, null);"&gt;Help&lt;/a&gt;</p></blockquote>

@@ -1,0 +1,93 @@
+---
+layout: post
+title: Figuring Out Search Algorithms [Organizing Content 10]
+date: 2010-05-27 08:40:12.000000000 -07:00
+categories:
+- findability
+- technical-writing
+keywords:
+- content organization
+- flare search
+- google rank
+- google search
+- Madcap Flare
+- madcap flare search algorithm
+- organization
+- search
+- Technical Writing
+- wordpress search
+- wordpress search algorithm
+tags:
+- series_organizing_content
+series: "Findability / organizing content"
+jtype: notes_findability_organizing_content
+weight: 2.0
+---
+{% include series/seriesTagOrganizingContent.html %}
+
+<p>In my last post, I argued that navigation systems can't be entirely discarded in favor of search, because navigation helps users <a href="https://idratherbewriting.com/2010/05/26/browse-versus-search-organizing-content-9/">discover the unknown unknown</a>. But now that we've covered navigation systems a bit, it's time to move on to search, because search is undoubtedly a major way that users navigate help content. How can you organize your content so that the topics are findable in search?</p>
+<p>Notice that I said "organize." You're still organizing your content, but on a smaller level. Rather than organizing topics within groupings or folders, you're organizing the words within the topics. To make the topic visible, you have to organize the words in a way that maximizes visibility in the search.</p>
+<p>But here is where things get confusing. Almost no one understands how search works. Google's search works differently from Flare's search. Flare's search works differently from WordPress's search. I'm guessing that the search in RoboHelp differs from the search in Author-it, which differs from the search in DITA-produced Eclipse help, and so on.</p>
+<p>Each search engine has a unique algorithm that sorts and ranks information based on a set of variables and other factors, much more than simple keyword frequency. Here's the key point: you can't optimize search until you understand the search algorithm you're optimizing for.</p>
+<h3>Google's search algorithm</h3>
+<p>Although Google's search algorithm is complex, it's unquestionable that Google's search results are based on some of the following factors:</p>
+<ul>
+<li>The number of links pointing back to your site</li>
+<li>The authority of the sites pointing back to your site</li>
+<li>The text used in the links pointing back to your site</li>
+<li>The location of the keywords the user is searching for, especially in the title and h1, h2, h3 tags</li>
+<li>The frequency of the right keywords that the user is searching for</li>
+<li>Your own site's page rank</li>
+</ul>
+<p>What about meta keywords and title tags? Not that important. You could stuff a ton of keywords into the header of your topic, but Google has been gamed with that trick long ago, so it ranks these keywords low. The genius of Google's search stems from the collective wisdom of hyperlinks.</p>
+<h3>WordPress' search algorithm</h3>
+<p>According to <a href="http://lorelle.wordpress.com/2006/02/11/understanding-and-fixing-wordpress-search/">Lorelle Van Fossen</a>, WordPress orders search results with the date as a major factor:</p>
+<blockquote><p>When you search in your WordPress blog, your search results are listed chronologically. Not by “most likely”, “most popular”, “most frequent use of the phrase”, or even alphabetically, just by date. And the chronological order runs from most recent to oldest. If the most likely post to provide the information the user is searching for is older, they will have to scroll towards the end of the list to find the most likely candidate for information. What are the odds they will, huh? This frustrates me no end.</p>
+<p>Another frustration with WordPress searching is that it only searches posts. It does not search comments nor Pages. Only post content.</p></blockquote>
+<p>Notice that while links pointing to your content factor high in Google, these same backlinks are non-factors in the WordPress search algorithm. In WordPress, the date of the post seems to matter most.</p>
+<h3>Madcap Flare's search algorithm</h3>
+<p>Since Flare is the help authoring tool I'm currently using, I'll dive into its search algorithm with more depth. According to Rob Houser in <a href="http://userassistance.com/tips/flare_tip_search_rankings.html">Flare Tip: How the full-text search works</a>, Flare's search weighs the following three factors with the most significance:</p>
+<ul>
+<li>Exact matches</li>
+<li>Frequency of the words</li>
+<li>Location of the words</li>
+</ul>
+<p>Rob explains,</p>
+<blockquote><p>Flare ranks exact matches of the term the user enters higher than partial matches. An exact match uses the same form of the term (for instance, an exact match for “deleting files” would be “deleting” or “files”). A partial match may share the same root word as the original search term, but the terms aren't exactly the same (for instance, the user might search for “deleting files” and the search would also find “delete”, “deletion”, “file”, and “filed”).</p></blockquote>
+<p>I'm not sure where Rob is getting his information, whether through experimentation with Flare or conversations with Flare developers. But let's assume Rob is right. There are still many questions unanswered, namely how to create an exact match. If the topic title doesn't provide the exact match, how do you create the match?</p>
+<h3>The Problem with Using Index Keywords</h3>
+<p>Flare doesn't have a section where you can stuff a file with meta keywords. But you can stuff a topic with index keywords. Index keywords are included in the search algorithm. (Concept keywords are excluded, by the way.)</p>
+<p>However, using index keywords as meta keywords presents a dilemma. If exact matches factor highest in the search, you should add index keywords according to the phrases you think users will search for in the help, right? But the way users enter keywords in search boxes differs from the way users browse an index.</p>
+<p>With Flare you're forced to make a decision about how you want to use the index keywords. If you use index keywords to beef up your search, your index will look random. If you choose index keywords for readability in a traditional index, you cripple the search.</p>
+<p>Let me give an example. Suppose my topic is "Properly Delivering a Burn Notice." Users searching for this topic might enter the following phrases:</p>
+<ul>
+<li>burn notice</li>
+<li>deliver burn notice</li>
+<li>drop off burn notices</li>
+<li>burn notices sending</li>
+<li>how to present a burn notice</li>
+<li>cutting off undercover agents</li>
+<li>severing ties with field agents</li>
+<li>burn notice protocol</li>
+<li>best way to handle burn notice</li>
+<li>give burn notice to operatives</li>
+</ul>
+<p>Because exact matches factor the highest in Flare, it's important to include these phrases as index keywords, and to insert those index keywords into the highest ranking location in the topic -- that is, inside the h1 tags of the topic title.</p>
+<p>But if I'm going to also produce an index in the help file or in the printed guide, the keywords and phrases need to be written and ordered differently. A typical string of index keywords might look like this:</p>
+<ul>
+<li>burn notices, delivering</li>
+<li>protocol, for burn notices</li>
+<li>field agents, delivering burn notices</li>
+<li>operatives, terminating</li>
+<li>tactics, presenting burn notices</li>
+</ul>
+<p>When you browse an index, you look for the main word first, which is usually a noun. Users don't usually browse to "give" or "deliver" when looking for a topic in an index.</p>
+<p>But when users search, they usually do include verbs to lead off the phrase. I tend to search for exactly what I'm trying to do. If I want to download an mp3 file of a James Bond soundtrack, I search for "download mp3 James Bond." If I want to figure out how to stop water leaking through my window well cracks, I search for "stop leaks to window wells." I lead with the verb.</p>
+<h3>Stems?</h3>
+<p>Another question is to determine how the search algorithm handles stems. Exact matches factor highly, so when I have a phrase like "drop off burn notices," do I need to add <em>drops </em>off burn notices, <em>dropping </em>off burn notices, <em>dropped </em>off burn notice, <em>drop </em>off burn notices, and so on for each of these search keyword phrases?</p>
+<p>I wrote to Madcap to ask them for this information, because it's not in the help file. They replied that the search will automatically look for partial matches, so if I just include "drop off burn notices," Flare will look for partial matches with the other verb forms. But an exact match still trumps a partial match in search engine weight.</p>
+<h3>What? It's not in the help!</h3>
+<p>I felt a little bewildered that Flare's help, which is comprehensive and complete in almost every way, had nothing to say about one of the most important elements of help authoring: how to influence the search to increase topic rank.</p>
+<p>And then I realized something ironic. In the application I'm documenting at work, search is a key feature, included in four separate places in the interface. And yet beyond keyword matches, I have no idea how the search algorithm works.</p>
+
+{% include series/seriesTagOrganizingContent_next.html %}

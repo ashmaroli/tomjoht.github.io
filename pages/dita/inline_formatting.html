@@ -1,0 +1,37 @@
+---
+layout: page
+title: 'DITA: Inline formatting'
+permalink: /inline_formatting/
+date: 2014-12-27 15:16:06.000000000 -08:00
+jtype: notes_dita
+description: "You can add <code>b</code>, <code>i,</code> and <code>u</code> tags for
+inline formatting. But to bold a button name, use <code>menucascade</code> and
+<code>uicontrol</code>."
+---
+{% include notes.html %}
+<div class="body conbody">
+<div class="p">Here's a sample bold formatted
+   word:
+{% highlight xml %}Download the <b>project.war</b> file from the folder.{% endhighlight %}
+</div>
+<div class="p">Here's a sample
+   instruction:
+{% highlight xml %}Click the <uicontrol>Print</uicontrol button.{% endhighlight %}
+</div>
+<div class="p">For a cascade of actions, use <code>menucascade</code> in combination with
+    <code>uicontrol</code>:
+{% highlight xml %}To open the document, go to <menucascade><uicontrol>File</uicontrol><uicontrol>Open</uicontrol></menucascade>.{% endhighlight %}
+</div>
+<p>By using <code>menucascade</code> and <code>uicontrol</code>, you can implement
+   different formatting than plain bold (although by default, it will look the same in Oxygen's
+   webhelp output).</p>
+{{tip}} It's sometimes easier to add inline formatting via the Author view in Oxygen.
+   Just highlight a word and press Enter. Then type the element you want to apply. The next time you
+   highlight a word and press Enter, Oxygen prompts you with the last element you applied.
+   Essentially you can highlight a word and press Enter twice to quickly apply formatting to groups
+   of elements. This is especially helpful when you're applying <code>codeph</code> tags.{{end}}
+<p>Note that you cannot use <code>strong</code> instead of <code>b</code>.</p>
+<p>You can also use basic HTML list tags, such as <code>ol</code> and <code>ul</code>. You
+   can use these list tags in a concept.</p>
+</p></div>
+

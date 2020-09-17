@@ -1,0 +1,59 @@
+---
+layout: post
+title: 'WordPress Tip: WordPress Image Galleries — Give Your Photo Galleries a Lightbox/Slideshowesque
+  Display'
+date: 2008-07-10 00:36:48.000000000 -07:00
+categories:
+- technical-writing
+- wordpress
+tags:
+- caption
+- description
+- images
+- Lightbox plugin
+- photo gallery
+- PhotoJAR plugin
+- Technical Writing
+- title
+- wordpress image gallery
+- wordpress tips
+status: publish
+
+published: true
+---
+<p><strong>Jan 2009 Update: </strong>Please see the note at the bottom of this page. Because I had trouble using captions with the Photojar plugin, I deactivated the plugin.</p>
+<p>A WordPress image gallery allows you to create a sharp-looking presentation for your photos or images. With just a couple of plugins and tweaks and some basic understanding of the WordPress gallery tag, you can make a Lightbox/Slideshowesque display of your gallery images without any custom coding.</p>
+<p>Here's an example of a WordPress gallery that goes a step beyond the default. Click each of the images, and then click the arrow buttons on the image to move to the next one. Instructions for creating such a gallery are below.</p>
+<p>[gallery]</p>
+<p>To create a WordPress image gallery like the one above:</p>
+<ol>
+<li>Download and install the <a href="http://wordpress.org/extend/plugins/photojar-base/" target="_blank">PhotoJAR plugin</a> and the <a href="http://wordpress.org/extend/plugins/lightbox-2/" target="_blank">Lightbox plugin</a>. Unzip and upload to your plugins folder, and then activate as usual.</li>
+<li>After activating the plugins, click the <strong>Settings</strong> tab (far right), and then click <strong>PhotoJAR</strong>. In the Link Images To drop-down, select <strong>Lightbox/Slimbox</strong>. In the Gallery Image Size filter, select <strong>Thumbnail</strong>. Then click <strong>Update Options </strong>at the bottom.</li>
+<li>Click the<strong> Lightbox2 </strong>tab, choose the lightbox theme color you want, and then click <strong>Save Changes</strong>.</li>
+<li>Create a new post and upload your collection of images by clicking the <strong>Add an Image </strong>button. When you upload an image, it is associated with the post. With each image, add text in the Title and Caption fields. The caption will appear below the gallery thumbnail (so make it short), whereas the Title will appear below the image when viewed alone (so make it longer).<a href="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/2008/07/wordpress_gallery_image.png"><img class="alignnone size-full wp-image-1680" title="Explanation of Title and Caption fields" src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/wordpress_gallery_image22.png" alt="" width="445" height="387" /></a></li>
+<li>After uploading the images, close the dialog box. Do NOT click the <strong>Insert into Post</strong> button. Your images are already associated with the post. When you add a gallery tag, they will automatically be pulled into the post without any html code at all.</li>
+<li>In the HTML view, add the following code to your post: &#91;gallery size="125x125xcrop"&#93;
+<p>. 125 x 125 is the thumbnail size, which you can change to best fit your blog's width. By default, three images appear in a row.</li>
+<li>Modify the styles for the captions and image sequence numbers by modifying your Lightbox theme's style sheet at /wp-content/plugins/lightbox-2/Themes/Black/. In the following style declarations,<strong> caption</strong> controls the Title; <strong>numberDisplay</strong> controls the "Image 1 of 7..." text. Change the values as desired.</li>
+<blockquote><p>#stimuli_imageData #stimuli_<strong>caption</strong>{ font-weight: bold; background-color: black; font-size: 12px; color: #c0c0c0;}</p>
+<p>#stimuli_imageData #stimuli_<strong>numberDisplay</strong>{ background-color: #000000; display: block; clear: left; padding-bottom: .5em;}</p></blockquote>
+<li>Publish your post.</li>
+</ol>
+<h3>Rearranging the Gallery Image Order</h3>
+<p>With WordPress 2.6, you can arrange the gallery image order by dragging the images on the Gallery tab into the order you want.</p>
+<h3>Additional Reading</h3>
+<ul>
+<li>The PhotoJAR plugin has a lot more power and control, with different tags and parameters. You can read <a href="http://www.jarinteractive.com/code/photojar/photojar-base/" target="_blank">more about it here.</a></li>
+<li>For more details about the Lightbox plugin, see the <a href="http://wordpress.org/extend/plugins/lightbox-2/" target="_blank">Lightbox pugin's page here</a>.</li>
+<li>To better understand the WordPress gallery and image tags (new with WordPress 2.5), see the <a href="http://codex.wordpress.org/Using_the_gallery_shortcode" target="_blank">Codex page on gallery shortcodes</a>.</li>
+<li>If you need a more robust image gallery plugin, see the <a href="http://wordpress.org/extend/plugins/nextgen-gallery/installation/">NextGen Gallery plugin</a>.</li>
+</ul>
+<h3>Note About Image IDs</h3>
+<p>If you don't want to insert an entire gallery, you can insert individual images (which are associated with any post), but you have to know the image IDs. To view the image IDs, go to the <strong>Manage</strong> tab and click the <strong>Media Library</strong> subtab. Mouse over the image title and look at the Post ID that appears in your browser's footer. You can then insert the single image into your post by using the following code: [image=23]. Also, replace 23 with your real image ID.</p>
+<p>You can also click the Insert into Post button that appears below the image when viewing the Gallery tab.</p>
+<h3>Note About the Description Field</h3>
+<p>You'll notice I didn't mention the Description field. The Description field doesn't apply to images with the Lightbox effect. If you <em>weren't</em> using the Lightbox effect for the gallery, each individual image -- when clicked -- would appear on its own page, with the Description text below it. The Lightbox plugin makes the image appear in a layer on the current page.</p>
+<h3>Photo Credit Goes to Jane</h3>
+<p>Special thanks to <a href="http://whataboutmomblog.com">Jane</a> for the photos (yes, they're our kids). The post where she wrote about this event is here: <a href="http://www.whataboutmomblog.com/2008/07/08/sugar-and-sugar-and-everything-nice/">Sugar and Sugar, and Everything Nice.</a></p>
+<p><strong>Nov 5, 2008 Update</strong></p>
+<p>I had trouble getting WordPress's new caption feature to work with Photojar, so I actually went back and undid all the posts with images since implementing Photojar. Photojar writes the image tag differently than WordPress 2.6 when you insert a caption. I love having captions, so I deactivated Photojar. Sorry. However, depending on your needs, this plugin may be right for you.</p>

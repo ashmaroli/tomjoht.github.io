@@ -1,0 +1,23 @@
+---
+layout: post
+title: 'WordPress Tip: WordPress Worm Requires Upgrade to 2.8.4'
+date: 2009-09-07 01:02:08.000000000 -07:00
+categories:
+- technical-writing
+- wordpress
+tags: []
+status: publish
+
+published: true
+---
+<p>I woke up from my long Sunday nap to see all kinds of commotion about upgrading WordPress to 2.8.4 due to a worm that is currently circulating. The <a href="http://wordpress.org/development/2009/09/keep-wordpress-secure/" target="_blank">WordPress blog reports</a>:</p>
+<blockquote><p>Right now there is a worm making its way around old, unpatched versions of WordPress. This particular worm, like many before it, is clever: it registers a user, uses a security bug (fixed earlier in the year) to allow evaluated code to be executed through the permalink structure, makes itself an admin, then uses JavaScript to hide itself when you look at users page, attempts to clean up after itself, then goes quiet so you never notice while it inserts hidden spam and malware into your old posts.</p></blockquote>
+<p>Upgrading to 2.8.4 is pretty easy and won't take more than 5 minutes. Here's the process I recommend: </p>
+<ol>
+<li>Back up your database. If you don't already have a WordPress backup plugin, go to <strong>Plugins &gt; Add New</strong> and install <a href="http://wordpress.org/extend/plugins/wp-dbmanager/" target="_blank">WP-dbmanager</a>. With some web hosts, this plugin doesn't seem to work. If that's the case, use <a href="http://wordpress.org/extend/plugins/wp-db-backup/" target="_blank">WP-DB-Backup</a>. When you back up your database using one of these plugins, you'll be prompted to download an sql file (which contains all the content from your posts, pages, comments, and settings).</li>
+<li>Go to <strong>Tools &gt; Upgrade</strong> and click <strong>Upgrade Automatically</strong>. If you receive an error here, deactivate all your plugins and try it again.</li>
+</ol>
+<p>That's it. If for some reason the above method for upgrading doesn't work, you can upgrade manually by deleting your wp-admin and wp-includes folders and all the files in your root <em>except </em>wp-config.php, .htaccess, and the wp-content folder. Then just download the latest version from wordpress.org and FTP the  files as replacements. It always freaks me out to hit the delete key in there and see dozens of files disappear , but just remember that your content is stored in a MySQL database, not in the WordPress files.</p>
+<p>Here's one other security measure. If you've had your blog for a while (a year or more), download wp-confiig.php (this file is in your root and contains important database information) and make sure you have the latest security statements in there (compare with wp-config.php from the <a href="http://wordpress.org/download/" target="_blank">latest WP download</a>). You can generate some random security strings <a href="https://api.wordpress.org/secret-key/1.1/" target="_blank">here</a>.</p>
+<p>While you're upgrading, look at your list of plugins. Most likely a few of them have updates that you can apply by clicking Update Automatically next to each plugin.</p>
+<p>If you need help upgrading your WordPress blog, let me know. If you're a personal friend, I may do it for free.</p>

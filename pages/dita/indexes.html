@@ -1,0 +1,75 @@
+---
+layout: page
+title: 'DITA: Index entries'
+permalink: /indexes/
+date: 2014-12-27 15:16:06.000000000 -08:00
+jtype: notes_dita
+description: "You can add index entries to topics. Even if you don't see the value in providing an
+index, index entries can help searches find the right topics."
+---
+{% include notes.html %}
+<div class="body conbody">
+<p> There are various approaches for adding indexes, but here's a typical way to add index
+      entries. </p>
+<div class="p">In the <code>prolog | metadata | keywords</code> element of a topic, add index terms The
+        <code>prolog</code> element comes just after the <code>shortdesc</code> element
+      (which follows the title). Here's a
+      sample:
+{% highlight xml %}<title>My Title</title>
+ <shortdesc/>
+<prolog>
+    <metadata>
+      <keywords>
+        <indexterm>cars</indexterm>
+      </keywords>
+    </metadata>
+  </prolog>{% endhighlight %}
+</div>
+<div class="p">You can also nest index entries inside of each other to create parent-child relationships among
+   the index
+   terms:
+{% highlight xml %}  <prolog>
+    <metadata>
+      <keywords>
+        <indexterm>cars
+                <indexterm>sedan</indexterm>
+        </indexterm>
+      </keywords>
+    </metadata>
+  </prolog>{% endhighlight %}
+</div>
+<div class="p">The result in the index will look like this:
+{% highlight xml %}cars
+  - sedan{% endhighlight %}
+</div>
+<p>When you want to create a "see" entry for an index, code it like this:</p>
+{% highlight xml %}
+   <indexterm>vehicle
+   <index-see>car</index-see>
+</indexentry>
+  {% endhighlight %}
+<p>The result of the index-see element is the following:</p>
+{% highlight xml %}
+    vehicle, see car
+   {% endhighlight %}
+<p>If you want to include a page number with the see also reference, write it like this:</p>
+{% highlight xml %}
+    <indexterm>vehicle
+   <index-see-also>car</index-see-also>
+</indexentry>
+    </indexterm>
+  {% endhighlight %}
+<p>The output will look like this:</p>
+{% highlight xml %}
+    vehicle ..... 23
+           see also car
+   {% endhighlight %}
+<p>Keep in mind that index entries added to the <code>prolog</code> section will include page
+      numbers pointing to the location of the <code>prolog</code>. Since most topics are short,
+      this isn't a problem. Also, since the online help is usually the main deliverable, it's also
+      not a problem. However, you can also add index entries in the middle of your topics. (But
+      apparently this causes some problems, especially with translation.)</p>
+<p>Also, some PDF renderers don't include page numbers to index entries. At any rate, since PDF
+      isn't usually the main deliverable, this is not a concern with index terms.</p>
+</p></div>
+

@@ -1,0 +1,34 @@
+---
+layout: post
+title: Converting Your WordPress Blog into a CMS (Content Management System)
+date: 2007-07-01 22:10:18.000000000 -07:00
+categories:
+- blogging
+- technical-writing
+- web-design
+- wordpress
+tags: []
+status: publish
+
+published: true
+---
+<p>WordPress is already a micro-CMS, but if you have a site that has a lot of pages, it can get a bit cluttered. By CMS, I mean a site where you have an abundance of static pages that you want to manage, rather than just an endless number of posts. You can use a <a title="Rob's List Subpages plugin" href="http://robm.me.uk/projects/plugins/wordpress/list-subpages" target="_blank">Subpages plugin</a> in your sidebar to make it easy for your users to find the pages. The context-sensitive Subpages sidebar can give your blog more of a CMS feel.</p>
+<p>I just finished redesigning the Suncoast chapter site into a CMS/Blog. You can view it here: <a title="Suncoast blog/CMS" href="http://stc-suncoast.org" target="_blank">http://stc-suncoast.org</a>. When you click a button on the top navigation bar, a list of subpages appear. That's the CMS part.</p>
+<p><a title="Subpages" href="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/2007/07/subpages.gif"><img src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/subpages1.gif" alt="Subpages" width="594" height="324" /></a></p>
+<p>The subpages are called automatically using <a title="Rob's List Subpages plugin" href="http://robm.me.uk/projects/plugins/wordpress/list-subpages" target="_blank">Rob's List Subpages plugin</a>. Here's the cool part: this plugin works in your sidebar, not just in a page template.</p>
+<p>Using this plugin, you can have about 7-8 top-level pages that each have 10+ subpages, and you won't overwhelm your users with long page menu showing 80 pages at once. In fact, the user doesn't even have to scroll. The user only sees pages relevant to his or her selection.</p>
+<p>(By the way, the original design was the <a title="YGO Lonely" href="http://www.ygosearch.com/seoblog/" target="_blank">YGO Lonely theme</a>, but I modified it quite a bit. You can tweak any theme into a CMS.)<br />
+</p>
+<h3>Implementing a CMS</h3>
+<p>Here's my quick conceptual explanation on how to implement a CMS for your blog:</p>
+<ol>
+<li>Make a second sidebar file, giving it a unique name.</li>
+<li>Add the List Subpages php code at the top of the new sidebar. Consider removing the other template tags from the sidebar so that you draw the user's attention to the context-sensitivity of the sidebar.</li>
+<li>Change your page template file to call the new sidebar with the subpages code.</li>
+<li>Leave your main index and single post files calling your regular sidebar.</li>
+<li>Define your parent and child pages.</li>
+</ol>
+<p>If you're totally new to <a title="page templates" href="http://codex.wordpress.org/Pages" target="_blank">page templates</a> and <a title="sidebars" href="http://codex.wordpress.org/Customizing_Your_Sidebar" target="_blank">sidebars</a>, read the WordPress codex a bit. Then spend time styling your design, and voila, you've got a CMS.</p>
+<p>If you have any feedback on the <a title="Suncoast site" href="http://stc-suncoast.org" target="_blank">Suncoast site</a>, I'd love to hear it.</p>
+<h3>Inspirations</h3>
+<p>I had the urge to modify the Suncoast site after reading more about information architecture and findability. I had the inspiration from seeing the <a title="IA consultants" href="http://iaconsultants.ca" target="_blank">iaconsultants.ca</a> site. On that site, if you click the Findability link on the top nav bar, you'll see a subpages menu on the bottom left. I like this concept. I often hear people complain about the clutter of blog sites. This is one small tweak you can make that will make a difference in findability.</p>

@@ -1,0 +1,158 @@
+---
+layout: post
+title: Building a table of contents with DITA versus Jekyll
+date: 2015-04-02 22:37:39.000000000 -07:00
+categories:
+- dita
+- jekyll
+tags:
+- series_jekyll_vs_dita
+series: "Jekyll versus DITA"
+jtype: notes_jekyll_versus_dita
+weight: 1.4
+---
+{% include series/seriesTagJekyllVsDITA.html %}
+
+<p>In my <a href="https://idratherbewriting.com/2015/03/23/new-series-jekyll-versus-dita/">ongoing series comparing Jekyll against DITA</a>, I want to touch on how you construct a table of contents.</p>
+<h2>Creating a TOC with DITA</h2>
+<p>The ditamap file in DITA is arguably the most important file in a DITA project, and it has a lot of features. Basically, the ditamap defines the table of contents for the project, which is how users navigate all the files (apart from search).</p>
+<p>Additionally, any file that you want included in your output <em>must</em> appear in your ditamap file. Otherwise it's excluded from the build.</p>
+<p>A project can have multiple ditamap files. You might have separate ditamap file for each output, or you could use the same ditamap file with conditional tags for multiple outputs.</p>
+<p>In the ditamap file, you reference each topic you want included like this:</p>
+<p>{% highlight xml %}
+<topichead navtitle="Links">
+ <topicref href="keyref_links.dita"/>
+ <topicref href="inline_links.dita" audience="field_engineers"/>
+ <topicref href="related_links.dita"/>
+ <topicref href="relationship_tables.dita"/>
+</topichead>
+{% endhighlight %}</p>
+<p>Notice how you can add attributes to the <code>topicref</code> elements. Here, if the build conditions exclude the field engineer audience, the inline_links.dita topic will be excluded.</p>
+<p>Additionally, hierarchy is established by nesting the elements. If you want to create sublevels, you nest the topics like this:</p>
+<p>{% highlight xml %}
+<topichead navtitle="Links">
+ <topicref href="keyref_links.dita">
+   <topicref href="inline_links.dita" audience="field_engineers"/>
+  </topicref>
+ <topicref href="related_links.dita">
+   <topicref href="relationship_tables.dita"/>
+  </topicref>
+</topichead>
+{% endhighlight %}</p>
+<p>Here the inline_links.dita topic will appear in a sublevel below keyref_links.dita. Similarly, relationship_tables.dita will appear nested below related_links.dita.</p>
+<p>You can combine topics if you use the <code>chunk</code> attribute, like this:</p>
+<p>{% highlight xml %}
+ <topicref href="inserting_links.dita" chunk="to-content">
+ <topicref href="inline_links.dita" toc="no"/>
+ <topicref href="related_links.dita" toc="no"/>
+ <topicref href="keyref_links.dita" toc="no"/>
+</topicref>
+{% endhighlight %}</p>
+<p>Now the inserting_links.dita topic will contain inline_links.dita, related_links.dita, and keyref_links.dita files as additional sections in the same inserting_links.dita topic, rather than appearing as separate files.</p>
+<p>If you want to include any non-DITA files, you would list them in the ditamap with a special <code>processing-role</code> attribute:</p>
+<p>{% highlight xml %}
+<topicref processing-role="resource-only" href="notes.dita" />
+{% endhighlight %}</p>
+<p>For more details on ditamap files, see my page on <a href="https://idratherbewriting.com/toc_linking/mapfiles/">ditamap files</a>.</p>
+<h2>Creating a TOC with Jekyll via categories</h2>
+<p>Jekyll provides a lot of different ways to create a TOC. Since many Jekyll sites are blogs, more emphasis seems to be given to <em>post</em> sorting than <em>page</em> sorting, but Jekyll also provides an interesting paradigm to handle the TOC for pages.</p>
+<p>You have at least two main options for create a TOC. You can add a category and weight as frontmatter in your page, and then run <code>for</code> loops to sort the content based on the category and weight.</p>
+<p>If you want to sort pages by category, you would put a category in the frontmatter of a page, like this:</p>
+<p>{% highlight yaml %}
+---
+title: My Page
+permalink: /mypage/
+category: getting_started
+weight: 1
+---
+{% endhighlight %}</p>
+<p>You could then use a for loop to get all pages in this category sorted by weight:</p>
+
+<p>{% highlight html %}
+<ul>
+{% raw %}{% for page in site.pages | sort: weight %}
+{% for tag in page.tags %}
+ {% if tag == "getting_started" %}
+    <li><a href="{{ page.permalink | prepend: site.baseurl }}">{{page.title}}</a></li>
+   {% endif %}
+  {% endfor %}
+{% endfor %}{% endraw %}
+</ul>
+ {% endhighlight %}</p>
+
+<p>This approach may get tedious, though, especially if you want to easily shift and arrange your TOC without opening every single page to change these frontmatter values.</p>
+<h2>Creating a TOC in Jekyll via data files</h2>
+<p>Another approach, and the one I'm currently using, is to list your TOC entries in a YML data file. Here is the typical structure of a YML file containing TOC entries. The YML syntax emphasizes human-readable code, so a lot of the formatting is dependent on spacing:</p>
+<p>{% highlight html %}
+entries:
+- title: Sidebar
+  subcategories:
+    - title: Overview
+      items:
+        - title: Introduction
+          url: /introduction/
+          audience: customer</p>
+<p>        - title: Release Notes
+          url: /release_notes/
+          audience: customer, fe</p>
+<p>        - title: High-level Summary
+          url: /high_level_summary_customer/
+          audience: customer</p>
+<p>        - title: High-level Summary
+          url: /high_level_summary_fe/
+          audience: fe</p>
+<p>    - title: Configuration
+      items:
+        - title: Configuration overview
+          url: /configuration_overview/
+        - title: "Configuration Details: First Steps"
+          url: /configuration_details/
+{% endhighlight %}</p>
+<p>Now the HTML code in your template uses a <code>for</code> loop to iterate through each of these items and wrap them in the right formatting for your theme. Here's an example of how the template code might look:</p>
+
+{% highlight html %}
+{% raw %}{% if site.audience == "fe" or "customer" %}
+{% assign sidebar = site.data.sidebar.entries %}
+{% assign buildAudience = "fe" %}</p>
+<p>{% elsif site.audience == "operations" %}
+{% assign sidebar = site.data.sidebar_ops.entries %}
+{% assign buildAudience = "ops" %}
+{% endif %}</p>
+<p><ul id="mysidebar" class="nav">
+{% for entry in sidebar %}
+  {% for subcategory in entry.subcategories %}
+    {% if subcategory.audience contains buildAudience %}
+       <li><a href="#">{{ subcategory.title }}</a>
+          <ul>
+           {% for item in subcategory.items %}
+              {% if item.audience contains buildAudience %}
+                <li><a href="{{item.url | prepend: site.baseurl}}">{{item.title}}</a></li>
+              {% endif %}
+          {% endfor %}
+          </ul>
+      </li>
+   {% endif %}
+ {% endfor %}
+{% endfor %}
+</ul>{% endraw %}
+{% endhighlight %}
+
+<p>When we start the for loop, what <code>sidebar</code> refer and <code>buildAudience</code> refer to is based on the assignments defined. These assignments depend on properties in the particular configuration file that's being used. (This is how the theme is separated from the content.)</p>
+<p>The <code>for</code> loop looks in the sidebar list and loops first through the items, and then the subcategories, iterating through each item in the list. Each item is wrapped in a link format. Additionally, only the items containing the <code>buildAudience</code> attributes are included in the list. (This <code>buildAudience</code> element allows us to single source the data file, using the same data file for multiple audiences.)</p>
+<p>You can get more fancy with the sidebar formatting, such as showing active links and more. But this shows the basic logic. My intent here is not to explain the code in detail but rather to give you a glimpse of how to build a TOC in Jekyll.</p>
+<p>Note also that the logic seems more complex here, but I've taken the explanation one level further than I did with DITA. With the DITA TOC explanation, I didn't get into how the Open Toolkit (OT) processes the ditamap file to render it into HTML and other outputs. I actually have no clue how the OT does the processing -- that's usually a behind-the-scenes process.</p>
+<p>With Jekyll, though, once you understand how <code>for</code> loops iterate through items in a YML list, it's fairly accessible to configure how the TOC items get processed.</p>
+<p>One important difference with Jekyll is that all content is included <em>by default</em>, whether it appears in the navigation or not. If you want to exclude content, you must list it in the Excludes property in your configuration file.</p>
+<h2>Multiple types of navigation</h2>
+<p>The ditamap structure tends to break down when your content resembles more of a knowledge base than a user guide. Because you can't tag pages or add pages to specific categories, about the only way to add DITA files to a knowledge-base-style output is by creating an enormous TOC or by not creating a TOC at all, but instead just relying on search.</p>
+<p>In contrast, with a Jekyll project, I could create both a TOC-style navigation for hierarchical content, and a tag-based navigation for knowledge-base style content.</p>
+<h2>Dynamic assembly of content</h2>
+<p>One strength of DITA is the ability to dynamically assemble larger topics from smaller ones, but this might also be seen as a weakness. In OxygenXML's webhelp output, if you use the <code>chunk</code> attribute to glue a topic together at build time, you can still find the individual chunks in search (they're only glued together in the TOC, not physically in the file contents).</p>
+<p>These individual chunks are problematic -- they don't make much sense out of context from the larger topic they were chunked into. (You might think the chunk attribute permanently glues them together, but that magic only happens in the TOC.)</p>
+<p>Additionally, if you have a relationship table in a "chunked" topic (meaning a topic that is dynamically assembled through the <code>chunk</code> attribute), the relationship table appears (oddly enough) after the first chunk, and then the other sections appear (see <a href="https://idratherbewriting.com/2014/05/02/dita-limitations-with-the-chunkto-content-attribute-in-relationship-tables/">this post</a> for more detail).</p>
+<p>This odd behavior of the Open Toolkit is necessary (I think) so that the relationship table can appear at the bottom of the all the individual chunks that don't appear glued together in the TOC topic but rather surface independently, for example, through search.</p>
+<p>If you're going to include a topic in another topic, there's no reason not to use a conref from within the topic itself, or if using Jekyll, to <a href="https://idratherbewriting.com/2015/04/01/creating-re-usable-chunks-conref-in-jekyll-versus-dita/">use includes</a> from within the topic.</p>
+<h2>Conclusion</h2>
+<p>Overall, I hope to have shown that Jekyll provides some robust options when it comes to creating your table of contents. What's especially important is that the TOC content is not merged into the theme in a tight way. Content is separated from format (stored in a data file) and merged together at build time with your theme's template.</p>
+
+{% include series/seriesTagJekyllVsDITA_next.html %}

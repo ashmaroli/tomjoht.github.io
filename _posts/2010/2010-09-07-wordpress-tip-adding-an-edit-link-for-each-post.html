@@ -1,0 +1,19 @@
+---
+layout: post
+title: 'WordPress Tip: Adding an Edit Link for Each Post'
+date: 2010-09-07 20:00:48.000000000 -07:00
+categories:
+- wordpress
+tags: []
+status: publish
+
+published: true
+---
+<p>You can add an "Edit" link in the metadata below your post title. This Edit link makes it easy to edit the specific post without having to navigate through the Posts section of your WordPress Dashboard. </p>
+<p>Here's the edit snippet of code that I mention in the screencast:  </p>
+{% highlight php %}
+<?php edit_post_link('Edit', '', ''); ?>
+{% endhighlight %}
+<p>Add this code snippet somewhere within the loop, such as with the post metadata.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LZiRTOQ4mp4" frameborder="0" allowfullscreen></iframe>

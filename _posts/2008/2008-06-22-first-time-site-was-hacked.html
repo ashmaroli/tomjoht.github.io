@@ -1,0 +1,29 @@
+---
+layout: post
+title: My WordPress Site Was Hacked
+date: 2008-06-22 22:38:44.000000000 -07:00
+categories:
+- technical-writing
+tags:
+- fix
+- site hack
+- Technical Writing
+- wordpress 2.5.1
+status: publish
+
+published: true
+---
+<p><a href="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/2008/06/install-screen.png"></a>My site was hacked today. Usually when someone says "my site's been hacked," the first response is, are you sure you didn't screw something up yourself? Yes, I'm sure. Someone twittered that my tinyurl was showing a login page. Actually, for me it showed the install page below:</p>
+<p><a href="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/2008/06/install-screen.png"><img class="alignnone size-medium wp-image-1636" title="Install screen that appeared after site was hacked" src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/install-screen-400x2761.png" alt="" width="400" height="276" /></a></p>
+<p>But I hadn't been upgrading or installing anything. Something was definitely wrong. </p>
+<p>I wondered if it was a hacker, so I searched the WordPress forums and found a <a href="http://wordpress.org/support/topic/171208?replies=8">post indicating a similar experience</a>. Not only did my blog show the install screen rather than content, the wp_options table in the database also needed to be repaired.</p>
+<p>I guess I'm used to not freaking out when things are broken. And just last week, I backed up my blog. So I was calm about it. Still, it surprised me that I didn't start hyperventilating or getting even the least bit stressed. Maybe that's a spinoff of having become a technical writer. <em>Oh, it's broken? Let's see what seems to be the matter ....</em></p>
+<p>Anyway, if you have the same hacked symptoms, here's how you fix it:</p>
+<ol>
+<li>Enter your web host's cPanel, click the MySQL database button, select the database for your blog, and then click the Repair Database button. This should fix the wp_options table and allow your site's content to reappear, rather than the install screen.</li>
+<li>Log in to your site, click the Users tab, and delete any new admin users. I had someone in there with the email <a href="mailto:mdburke@maine.edu">mdburke@maine.edu</a>.</li>
+<li>Delete the 30+ new "Hello World" and "About" posts.</li>
+<li>Change your password to your site and web host to something much stronger.</li>
+</ol>
+<p>That's about it. I'm not sure what the hacker's point was. I do have the latest version of WordPress (2.5.1).</p>
+<p><span style="text-decoration: line-through;">As a measure of prevention against future attacks, I installed the Ask <a href="http://wordpress.org/extend/plugins/askapache-password-protect/">Apache Password Protect Plugin</a>, which was recommended in this WordPress Codex article on "<a href="http://codex.wordpress.org/Hardening_WordPress">Hardening WordPress.</a>" </span> Actually, this plugin turned out to be problematic. It locked me out of my admin panel completely. If this happens, just delete the new .htaccess file that appears in your wp-admin folder, and you should be able to log back into your site.</p>

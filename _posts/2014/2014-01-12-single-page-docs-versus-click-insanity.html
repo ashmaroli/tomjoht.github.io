@@ -1,0 +1,34 @@
+---
+layout: post
+title: Single-page docs versus "Click Insanity"
+date: 2014-01-12 20:12:31.000000000 -08:00
+categories:
+- api-doc
+- findability
+tags: []
+status: publish
+
+published: true
+---
+<p>Check out this presentation by <a href="http://www.ifup.org/">Brandon Philips</a> at the <a href="http://docs.writethedocs.org/en/2013/conference/talks.html">2013 Write the Docs conference</a>. In the video, Philips argues for "single-page docs," which are entire help systems rendered on a single page. He says that for many technical information sets, like APIs, having all the functions, classes, etc. appear on the same page reduces "click insanity" and allows developers to more easily find what they're looking for.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rXcdTYuxwys" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p><a href="https://www.youtube.com/watch?v=rXcdTYuxwys&amp;list=PLmV2D6sIiX3UpQFzAIWh-_gsUTGCCtFIj&amp;index=23<br />
+">See the full list of 2013 Write the Docs videos here.</a></p>
+<p>Some poor documentation patterns ("anti-patterns") noted by Philips include <a href="http://aws.amazon.com/documentation/">Amazon Web Services</a> and <a href="https://django-fluent-contents.readthedocs.org/en/latest/index.html">Django-fluent-contents</a>.</p>
+<p>In contrast, some single-page docs he feels provide easier navigation include the following: </p>
+<ul>
+<li><a href="http://expressjs.com/api.html">express</a></li>
+<li><a href="https://parse.com/docs/ios_guide">Parse</a></li>
+<li><a href="http://getbootstrap.com/getting-started">Twitter Bootstrap</a></li>
+<li><a href="http://apidocs.strongloop.com/loopback/#nodejs-api">Strongloop API</a>
+</li>
+<li><a href="http://documentation.mailgun.com/api-intro.html">Mailgun API</a></li>
+<li><a href="http://coreos.com/docs/distributed-configuration/etcd-api/#key-space-operations">Core OS</a></li>
+</ul>
+{% include random_ad.html %}
+<p>Take a look at the navigation through some of those single-page docs.</p>
+<p>Philips said he didn't find many tools for creating single-page docs, so he created his own, naming it "Fixie Docs" (after the single-gear, no freewheel bicycle). You can <a href="http://philips.github.io/fixiedocs/">download a copy of Fixie docs here</a>.</p>
+<p>Some audience members raised a couple of objections. One person said their research into the single docs method wasn't favorable. The users were overwhelmed with too much information on the same page, so they abandoned their attempt to look through it. </p>
+<p>Another person asked how you could re-use information when it's all on the same page. Philips noted that this technique is probably more appropriate for APIs and other developer material. It's not for content that needs to be re-used. API and SDK documentation typically have long lists of methods, classes, calls, functions, or other technical objects. It doesn't always make sense to put this content on separate pages, especially when each entry is pretty short and highly related to each other.</p>
+<p>Consolidating the material on one page with a sidebar navigation that automatically highlights the sidebar title based on your location on the page is a novel approach -- not for every kind of documentation, for sure. But for the type of material Philips describes, it seems like a good fit.</p>

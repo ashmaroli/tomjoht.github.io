@@ -1,0 +1,68 @@
+---
+layout: post
+title: 'Organizing Content as Story [Organizing Content #17]'
+date: 2010-06-29 08:25:00.000000000 -07:00
+categories:
+- findability
+- technical-writing
+tags:
+- featured
+- story
+- Technical Writing
+tags:
+- series_organizing_content
+series: "Findability / organizing content"
+jtype: notes_findability_organizing_content
+weight: 2.7
+---
+{% include series/seriesTagOrganizingContent.html %}
+
+<p>With my ongoing series on organizing content, I left off at the question of whether blog platforms would outperform help authoring tools as a way to organize content for web environments. I had a lot of thoughts about that topic, and actually created a blog theme for a documentation project as a test, but recently I received a new project on my plate, and my attention has shifted to another angle on this same series: organizing the content <em>within the topic</em> <em>itself.</em></p>
+<p>I've been listening to Alan Porter's presentation on "What Tech Docs Can Learn from Comics," which he gave at the 2009 STC Summit. I was also reading his <a href="http://thecontentwrangler.com/2010/01/08/comics-can-make-you-a-better-communicator/">detailed post on the same topic on The Content Wrangler</a>. Alan emphasizes the importance of implementing two main elements from comics into technical documentation: story and visuals.</p>
+<p>One can hardly disagree with his recommendation. Any time you add either story or visuals to your content, the appeal of your content increases. When you <em>combine </em>story with visuals in sequential ways, as comics do, the appeal of your content increases dramatically. In this post, I'll focus on this first point: organizing content as story.</p>
+<h3>What Is Story</h3>
+<p>Alan says a story (or narrative) includes a beginning, middle, and end. You take the reader somewhere new through a series of events.</p>
+<p><figure><a href="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/2010/06/beginningmiddleendgif.gif"><img class="size-medium wp-image-6761" title="A story has a beginning, middle, and end" alt="A story has a beginning, middle, and end" src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/beginningmiddleendgif-600x418.gif" width="600" height="418" /></a> <figcaption>A story has a beginning, middle, and end</figcaption></figure></p>
+<p>Alan explains,</p>
+<blockquote><p>The second fundamental of comics is the idea of narrative [or story]. Narrative should drive and guide the reader / user along on a journey. All communication is story telling (and that is perhaps meat for a future blog post), and in story telling your narrative must have a beginning, middle and end. Even if you use a topic based authoring approach like DITA, each topic should be a ‘story', the reader should be guided through the information and know more at the conclusion than they did at the start.</p></blockquote>
+<p>Story can be defined and described in various ways. I like to define story as any attempt to overcome a conflict, and a good story is one that requires some change to overcome the conflict. To fit this with Alan's definition, in the <strong>beginning </strong>of the story, the protagonist encounters a problem or has some quest or yearning. In the <strong>middle</strong>, we learn what steps the protagonist is taking to resolve the problem or realize the yearning. In the <strong>end</strong>, we have the resolution.</p>
+<h3>The Element of Change</h3>
+<p>In a good story, the resolution always brings about some type of change, or comes about because of change. If you listen to stories on <a href="http://www.themoth.org/podcast">The Moth podcast</a> (a storytelling podcast), you'll constantly hear this element of change near the end of each story. For a story to feel meaningful, the protagonist always changes as a result of the conflict. Without this element of change, the story feels flat.</p>
+<p>In technical documentation, achieving that element of change is difficult. In almost all technical documentation, the reader is the protagonist, since our point of view is second person ("you"). You (the reader) have a problem. You may be frustrated and ready to punch your fist through a door because of this problem. Through the help topic's steps and information, you find a solution that solves your problem. Hooray, you're much happier and complete now. That's the basic transformation.</p>
+<p>Tech doc will probably never go beyond this simplistic transformation to achieve anything of literary significance. For example, we'll never have users feel a sense of the fragility of life or the meaninglessness of existence. Because of that, I think it's best not to dwell on the transformitive element of story when applying it to technical documentation. Instead, it's more practical to focus on the initial catalyst of all story: the problem.</p>
+<h3>Focusing on the Problem</h3>
+<p>A problem of some kind usually drives and gives rise to the story. But isn't every help topic by default the answer to some problem? And aren't users coming to the help content with a problem already in mind? Do we need to explicitly supply the problem, since it's already apparent in the user's mind?</p>
+<p>Yes, your protagonist already has a problem. That problem is what is fueling his or her path through the help. But it can still be helpful to state the problem explicitly so that users can connect their problem to the solution you describe.</p>
+<h3>An Example</h3>
+<p>Let's take a look at an actual example. Last year I wrote the following help topic for a calendar application that my organization is going to be using. Here's the topic:</p>
+<blockquote><p><strong>Subscribe to a calendar</strong></p>
+<p>Before you can see events for a calendar, you must subscribe to a calendar. When you subscribe to a calendar, it appears in the right column in a unique color. Your ward or stake may have dozens of calendars available, but you see events only for the calendars to which you subscribe. To subscribe to a calendar:</p>
+<ol>
+<li>In the upper-right part of the screen, click <strong>Options</strong>, and then click <strong>Manage Subscriptions</strong>. The list of calendars appears with three categories: <em>WARD CALENDARS</em>, <em>STAKE CALENDARS</em>, and <em>OTHER CALENDARS</em>.</li>
+<li>Click <strong>Subscribe</strong> next to the calendars you want to view.</li>
+<li>In the upper-left part of the screen, click <strong>Calendar</strong> to return to your calendar home page.</li>
+</ol>
+<p>Events from the subscribed calendars appear on your calendar. The calendar name also appears in your list of Subscribed Calendars in the right column.</p></blockquote>
+<p>The topic probably looks like a lot of topics in a help file. In a rather boring way, it explains how to perform a basic task in an application.</p>
+<p>This topic doesn't feel like a story. The problem is briefly mentioned at the beginning -- "Before you can see events on the calendar, you must subscribe to the calendar." And the resolution is fulfilled through the steps. But if this is the extent of story in tech doc, we may as well forget about using story as technique, because all documentation looks about like this by default.</p>
+<p>Let's try to rewrite the same topic with a larger emphasis on the problem. Since story usually starts with a problem (or a yearning), if we emphasize this element more, and provide a stronger resolution at the end, it will feel more story-like. Here's that adjustment:</p>
+<blockquote><p><strong>See Events on Your Calendar<br />
+</strong></p>
+<p>When you first log in to the calendar, you will notice that it's blank. No events appear, even though you may know that calendar content is available. Although it may seem like the calendar lacks content or isn't yet set up, actually there may be plenty of events on the calendar -- they are simply hidden. In order to see calendar content, you must subscribe to the calendars you want to view.</p>
+<p>To make events appear on your calendar:</p>
+<ol>
+<li>In the upper-right part of the screen, click <strong>Options</strong>, and then click <strong>Manage Subscriptions</strong>. The list of calendars appears with three categories: <em>WARD CALENDARS</em>, <em>STAKE CALENDARS</em>, and <em>OTHER CALENDARS</em>.</li>
+<li>Click <strong>Subscribe</strong> next to the calendars you want to view.</li>
+<li>In the upper-left part of the screen, click <strong>Calendar</strong> to return to your calendar home page.</li>
+</ol>
+<p>Events from the subscribed calendars appear on your calendar. The calendar name also appears in your list of Subscribed Calendars in the right column. You can now view the details of each event. You can also toggle the calendar event display on or off by select the calendars you want to view or hide in the options panel.</p></blockquote>
+<p>The only substantial change I made was adding another two sentences about the problem in the introduction: "When you first log in to the calendar, you will notice that it's blank. No events appear, even though you may know that calendar content is available. Although it may seem like the calendar lacks content or isn't yet set up, actually there may be plenty of events on the calendar -- they are simply hidden."</p>
+<p>I also changed the title from "Subscribe to a Calendar" to "See Events on Your Calendar." And I added another sentence in the resolution.</p>
+<h3>Strategies for Story</h3>
+<p>It might generally be good practice to kick off each topic by describing in detail the problem that the topic solves. Although I said that the user brings the problem/conflict to the table already, putting ourselves into the mindset of a "problem-solution" format will help focus our help topics on the pain points and other most likely desired information. Explicitly stating the problem, rather than simply explaining the basics of an application, helps us maintain our focus as technical writers in the right direction: the user's story.</p>
+<p>On another level, though, explicitly stating the problem in detail helps the user connect his or her problem to the solution. In the above example, the user senses frustration that the calendar is blank. How would seeing a topic that says "Subscribe to a Calendar" help the user know that this is the answer to his or her blank calendar problem? There's a cognitive disconnect if you omit the problem from your topic. Without the explicit statement of the problem, any topic might be the answer to a blank calendar. "Finding a Calendar," "Troubleshooting Calendar Events," "Adding Calendar Events" -- these topic titles all seem like likely candidates for the user's problem of not seeing calendar events.</p>
+<p>Now what about the title, changing it from "Subscribe to a Calendar" to "See Events on Your Calendar." Most readers don't come to help files looking for basic information. They come when they have a problem. So shouldn't our help be centered around this problem mindset and language?</p>
+<p>That seems logical, but most help topic titles simply list tasks or actions that aren't necessarily problems. I am not sure that changing the help topic titles to describe problems works all the time, but the general formulation of topic titles should represent the user's problem in a closely connected way.</p>
+<p>Although a poignant story in the literary sense will probably never be something we can achieve in documentation, structuring help topics with a detailed problem in the beginning can help make topics more story-like.</p>
+
+{% include series/seriesTagOrganizingContent.html %}

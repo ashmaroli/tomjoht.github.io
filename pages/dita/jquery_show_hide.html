@@ -1,0 +1,165 @@
+---
+layout: page
+title: 'DITA: Add a jQuery show/hide toggle'
+permalink: /jquery_show_hide/
+date: 2014-12-27 15:16:06.000000000 -08:00
+jtype: notes_dita
+description: "The show/hide toggle allows you to hide content within your page. This helps you
+compress long content in a more user friendly way."
+---
+{% include notes.html %}
+<div class="body taskbody">
+<div class="section context">
+{{tip}} For a demo of the show/hide toggle functionality, see <a class="xref external" href="https://s3.us-west-1.wasabisys.com/idbwmedia.com/files/oxygendemos/show_hide/" target="_blank">the Show/hide demo here</a>.{{end}}
+<p>There are a lot of different jQuery show/hide toggles. The one we'll be implementing is here:
+     <a class="xref external" href="http://sylvain-hamel.github.io/simple-expand/" target="_blank">Simple Expand</a>. Additionally, the instructions here
+    show you how to implement the toggle with the twisty arrows.</p>
+<p>For a demo of the effect, see the webhelp output of the DITA QRG.</p>
+{{note}}The method described here permanently alters your webhelp output from Oxygen. If you don't want top alter the output, make a copy of the files that you're altering first.{{end}}
+</p></div>
+<ol class="ol steps">
+<li class="li step stepexpand"><span class="ph cmd">Download the minified script from the <a class="xref external" href="http://sylvain-hamel.github.io/simple-expand/" target="_blank">jQuery Simple Expand plugin site</a> and copy it to your
+     clipboard.</span></li>
+<li class="li step stepexpand"><span class="ph cmd">In a text editor, open the following js file: <span class="ph filepath">[Oxygen Install Directory]/frameworks/dita/DITA-OT/plugins/com.oxygenxml.webhelp/oxygen-webhelp/resources/js/webhelp_topic.js</span>.</span></li>
+<li class="li step stepexpand"><span class="ph cmd">Insert the copied script at the bottom right before the closing <code>});</code>.</span>
+<div class="itemgroup stepxmp">
+{% highlight xml %}
+$('.expander').simpleexpand();
+    {% endhighlight %}
+<p>This function triggers the script. Wherever the <code>expander</code> class exists, the the <code>simpleexpand</code> function will trigger. This script will appear in your webhelp topic frame (instead of your sidebar).</p>
+</p></div>
+</li>
+<li class="li step stepexpand"><span class="ph cmd">Save the close the file.</span></li>
+<li class="li step stepexpand"><span class="ph cmd">In a text editor, open the following file: <span class="ph filepath">[Oxygen Install Directory]/frameworks/dita/DITA-OT/plugins/com.oxygenxml.webhelp/oxygen-webhelp/resources/css/webhelp_topic.css</span>.</span></li>
+<li class="li step stepexpand"><span class="ph cmd">Insert the following styles:</span>
+<div class="itemgroup stepxmp">
+{% highlight xml %}
+.content {display:none;}
+.expander.expanded {
+    padding-left: 13px;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-image: url(../img/expanded.gif);
+}
+
+.expander.collapsed {
+    padding-left: 13px;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-image: url(../img/collapsed.gif);
+}    
+   {% endhighlight %}
+<p>Any element with the class <code>content</code> will be hidden. When the script is run, the <code>content</code> class will be removed and one of the other classes will be added.</p>
+<p>In my demo, I added some more classes to style how the expand and collapse sections appear. If you want to style your output like the demo, use these styles instead of the previous:</p>
+{% highlight xml %}
+.content{
+    display:none;
+}
+.expander.expanded{
+    padding-left:13px;
+    background-position:left center;
+    background-repeat:no-repeat;
+    cursor: pointer;
+    font-size: 16px;
+    color: blue;
+    box-sizing: border-box;
+    display: inline-block;
+    background: #ececec url(../img/expanded.gif) no-repeat 1% center;
+    border-top: 1px dashed #ccc;
+    border-bottom: 1px dashed #ccc;
+    color: #444;
+    font: normal 13px/22px "Helvetica Neue","HelveticaNeue",Helvetica,sans-serif;
+    cursor: pointer;
+    padding: 9px 5px 8px 25px;
+    width: 100%;
+    font-weight:bold;
+    
+}
+
+.expander.collapsed{
+    padding-left:13px;
+    background-position:left center;
+    background-repeat:no-repeat;
+    cursor: pointer;
+    font-size: 16px;
+    color: blue;
+    box-sizing: border-box;
+    display: inline-block;
+    background: #ececec url(../img/collapsed.gif) no-repeat 1% center;
+    border-top: 1px dashed #ccc;
+    border-bottom: 1px dashed #ccc;
+    color: #444;
+    font: normal 13px/22px "Helvetica Neue","HelveticaNeue",Helvetica,sans-serif;
+    cursor: pointer;
+    padding: 9px 5px 8px 25px;
+    width: 100%;
+    font-weight:bold;
+}
+     {% endhighlight %}
+</p></div>
+</li>
+<li class="li step stepexpand"><span class="ph cmd">Grab the two arrow images: <a class="xref external" href="http://sylvain-hamel.github.io/simple-expand/images/expanded.gif" target="_blank">expanded.gif</a> and <a class="xref external" href="http://sylvain-hamel.github.io/simple-expand/images/collapsed.gif" target="_blank">collapsed.gif</a></span>
+<div class="itemgroup info">
+<p>Right-click the images (they appear in the upper-left corner) and save the images to your computer.</p>
+</div>
+</li>
+<li class="li step stepexpand"><span class="ph cmd">Copy the images into this folder: <span class="ph filepath">[Oxygen Install Directory]/frameworks/dita/DITA-OT/plugins/com.oxygenxml.webhelp/oxygen-webhelp/resources/img. </span>
+<div class="itemgroup info">
+<p>Now you've set up your jQuery script, styles, and images. The next step shows how to incorporate the show/hide effect in a page.</p>
+</div>
+</li>
+<li class="li step stepexpand"><span class="ph cmd">To include a show/hide instance on a page, add the following:</span>
+<div class="itemgroup stepxmp">
+{% highlight xml %}
+   <sectiondiv>
+    <p outputclass="expander">View details</p>
+    <p outputclass="content">This is the content that gets expanded.</p>
+   </sectiondiv>
+  {% endhighlight %}
+<p>Adding <code>outputclass</code> on an element renders it to <code>class</code> in the HTML output.</p>
+<p>It's not absolutely necessary to include the <code>sectiondiv</code> tag. However, if you have multiple elements with an <code>outputclass="content"</code> on your elements, and those elements are siblings (rather than in a parent/child hierarchy), all the siblings will expand. By containing each element with <code>outputclass="content"</code> inside a <code>sectiondiv</code> tag, then only that element inside the <code>sectiondiv</code> will expand.</p>
+<p>This is because the default behavior of the Simple Expand plugin is to climb up to the parent element and expand all child elements containing the <code>content</code> class. By using <code>sectiondiv</code> elements, you create multiple parent-child relationships.</p>
+<p>The <code>sectiondiv</code> tag works only inside a <code>section</code> element, which is only allowed in concept and general task elements. For task elements, you can use the <code>info</code>, <code>stepxmp</code>, <code>context</code> or other div block elements.</p>
+</div>
+</li>
+<li class="li step stepexpand">
+    <span class="ph cmd">You can also transclude content from another page.</span></p>
+<div class="itemgroup stepxmp">The transclusion source might look like this:
+{% highlight xml %}<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+  <concept id="lipsum_source">
+  <title>Sample Show/Hide Content</title>
+ <shortdesc id="lipsum_shortdesc">This is a page containing sample content that acts as the transclusion source for the show/hide demo.</shortdesc>
+<conbody>
+
+<section id="lipsum1"><title>Lipsum section 1</title>
+  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+</section>
+
+<section id="lipsum2"><title>Lipsum section 2</title>
+  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+</section>
+</conbody>
+</concept>
+    {% endhighlight %}
+<p>If so, the transclusion target would look like this:</p>
+{% highlight xml %}
+ <!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_cmy_2g1_kp">
+ <title>Show/hide demo</title>
+ <shortdesc>This is a demo of the show/hide functionality.</shortdesc>
+ <conbody>
+  <p>This first expandable section is transcluded from this page: <xref href="jquery_showhide_sample_content.dita"/>.</p>
+  <p outputclass="expander">View more</p>
+
+  <section conref="jquery_showhide_sample_content.dita#lipsum_source/lipsum1" outputclass="content"/>
+  <section conref="jquery_showhide_sample_content.dita#lipsum_source/lipsum2" outputclass="content"/>
+  <section conref="jquery_showhide_sample_content.dita#lipsum_source/lipsum3" outputclass="content"/>
+  </conbody>
+</concept>
+     {% endhighlight %}
+<p>For more details about using <code>conref</code>, see <a class="xref" href="/conref" title="You can re-use notes and other content through an attribute called conref.">Conref (re-use of content)</a>. </p>
+</p></div>
+</li>
+</ol></div>
+

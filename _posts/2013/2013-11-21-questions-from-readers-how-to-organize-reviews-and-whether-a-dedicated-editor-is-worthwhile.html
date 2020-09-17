@@ -1,0 +1,40 @@
+---
+layout: post
+title: 'Questions from readers: How to organize reviews, and whether a dedicated editor
+  is worthwhile'
+date: 2013-11-21 08:30:42.000000000 -08:00
+categories:
+- technical-writing
+tags: []
+status: publish
+
+published: true
+---
+<h2>How to organize reviews</h2>
+<p>A reader asks the following:</p>
+<blockquote><p>Do you have any advice on how a rapidly-growing documentation team--i.e., a team that's growing roughly in proportion to our company's burgeoning number of engineers and enterprise software products--should go about managing peer reviews of each other's work?</p>
+<p>I'm specifically interested in best practices on how to give, track, and manage peer review assignments. For example, is it best to use a spreadsheet for this, or is a system such as JIRA better?</p>
+<p>If a ticketing system is ultimately a more robust approach, and we're inclined to think it is (since you can effectively create and track assignments, and trigger automatic notifications), then the next question becomes: how do you know at what level of granularity to break down each ticket? Should there be a ticket for every topic?</p>
+<p>That might be overkill, if you have hundreds of topics like we do. Or should you create one ticket to cover multiple topics? That takes less time for ticket creation, but is not as easy to monitor.</p>
+</blockquote>
+<p>I currently use a combination of Google Docs and JIRA. I write all my content in Google Docs because the commenting system is so easy and convenient. When I'm ready for a document to be reviewed, I often push it out to multiple people at once -- product manager, engineers, other writers. They comment simultaneously and often comment on each other's comments.</p>
+<p>Since using Google Docs for reviews, I've been amazed to see engineers and other SMEs wholeheartedly jump into the review process. Using other methods, such as review meetings or printing out PDFs for people to mark up with a pen, etc., usually fails. But collaboration with Google Docs works awesomely.</p>
+<p>To start the review process and let key people know a document is ready for review, I assign the person a JIRA ticket. Most people at my company use JIRA to track technical tasks, so using JIRA fits into the logical flow of our company.</p>
+<p>I sometimes group multiple topics into the same Google doc, separated by line or page breaks. Consolidating information into fewer Google docs helps avoid having too many disparate topics to keep track of. To reflect hierarchy, you could create a Google site with a brief TOC and link to each Google doc. I've tried this and it seems to work.</p>
+<p>Keep in mind that this lightweight publishing process fits our needs. I publish about 5-7 pages of new documentation every 2 weeks, pushing it onto our Drupal site. To expedite the publishing, I use Markdown syntax in Google docs and then leverage <a href="https://stackedit.io/">Stackedit</a> to convert the Markdown to HTML.</p>
+<p>After publishing, if I find there's an error, I can immediately update the page.</p>
+<h2>Whether a dedicated editor is worth it</h2>
+<p>The reader asks another question:</p>
+<blockquote>
+<p>Another important and related question we've been asking ourselves is this: how do you know when you should seriously consider hiring a full-time Technical Editor?</p>
+<p>Imagine a scenario like this: you have a team with five writers already, and you have tons more documentation to write in the year ahead, so you're given the budget to hire two more people. Do you hire two new writers, and churn out lots of content written to meet your quantity goals, but have noticeable issues with consistency, quality, and maintainability?</p>
+<p>Or do you hire a writer and an editor, potentially slipping on your quantity goals but much more likely to produce higher quality content?</p>
+</blockquote>
+<p>When you start publishing content written by multiple people on the same site, so that search results of articles written by different people appear side by side,  any stylistic variations become apparent.</p>
+<p>While I think having others review your documentation is critical, I'm not sure I would choose a dedicated editor. If the dedicated editor could actually try out all the instructions, sure. But if the technical editor's role is limited to making sure everyone uses commas the same way, I'm say forego the editor and hire the writer instead.</p>
+<p>You could implement a system of peer reviews and edits. But usually everyone is too busy for this model to work.</p>
+<p>For the past 7 years I haven't had a technical editor. No doubt my content is the worse for it, but whenever I think of technical editors, I get flashbacks about cumbersome review cycles, cosmetic edits, endless debates about trivial stylistic decisions, and tiresome review deadlines and planning.</p>
+<p>Content does need review, but it's the content itself that needs review -- the accuracy, completeness, and relevance, not just the grammar and style guide adherence. Actual users need to test out the documentation, going through the tasks ideally in real business scenarios, and then provide feedback. If a dedicated editor can do that, great. If not, I'd pass.</p>
+<p>In agile environments, I think the user-based review comes when users try out the instructions and provide feedback. Then you update the information accordingly in real-time (rather than waiting for the next release window).</p>
+<p>Rather than expanding with an editor role, though, why not explore some other specialist roles? Why not hire a dedicated content strategist, or an information architect, or a visual illustrator? If you've really got money to spend, add in a manager and a publishing/tools expert.</p>
+<p>Seriously, in deliberations about growing a department, there are a lot of things to consider beyond style guides and consistency. Think about search engine optimization, cross-department collaboration, findability, content lifecycles, usability research, automated publishing processes, usage tracking, and more. When you're creating content, it's hard to focus on these other issues. You could have this content strategist focus on these matters so the writers can focus on creating content.</p>

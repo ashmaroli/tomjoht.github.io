@@ -1,0 +1,23 @@
+---
+layout: post
+title: 'Reader Question: How Do I Restrict Content by Role in the Same Output?'
+date: 2013-06-06 23:23:14.000000000 -07:00
+categories:
+- findability
+- technical-writing
+tags: []
+status: publish
+
+published: true
+---
+<p>I recently received the following question from a reader:</p>
+<blockquote><p>I just found out that our next-gen cloud-based Help needs to filter content — when our user logs in, she must see only info for the products her company bought AND the role she holds. </p>
+<p>In your exploration of dynamic help, have you found any out-of-the-box solutions that include single-sign-on? Author-it Aspect seems close; maybe MindTouch, too. Zendesk filters, but can't do complex content. </p>
+<p>If I were to pull this off, I'd also need to solve how to integrate my API references from Sandcastle. But first things first. :-)
+</p></blockquote>
+<p>I offered to post the question on my site to see how other tech writers might have handled this situation. I think it many cases, it can be tough to draw lines between what content each type of user should see. But if one customer has version A and another has version B, then it would be cool to have your help default to the software the user has. </p>
+<p>I bet there are a variety of solutions. The traditional solution is to create different outputs for each role and then connect the help button to the role. But I think you want all content in one output. </p>
+<p>In Drupal, you could use the <a href="https://drupal.org/project/content_access">Content Access module</a> to restrict content types or articles based on the user's role. However, it seems like it would be a nightmare to try to sort out all the permissions. Also, I'm not sure how you'd map your customer roles into the Drupal roles. It might be easy, or require some custom development.</p>
+<p>I once saw an <a href="https://idratherbewriting.com/2011/08/18/blown-away-by-author-it-aspect/">Author-it Aspect demo of this capability</a> and was impressed, but never moved beyond that.</p>
+<p>I bet many content management systems have sophisticated access control mechanisms. It depends how much your company can spend.  </p>
+<p>You could also have developers in your company build a custom system. </p>

@@ -1,0 +1,56 @@
+---
+layout: post
+title: Woes of conditional text and topichead elements (DITA best practices)
+date: 2014-08-10 13:01:43.000000000 -07:00
+categories:
+- dita
+tags: []
+status: publish
+
+published: true
+---
+<p>When authoring in DITA, there are a couple of best (or worst) practices that I wasn't aware of. The first is with conditional text; the second is with <code>topichead</code> elements:</p>
+<h2>Cautions with conditional text</h2>
+<p><a href="http://urbinaconsulting.com/" alt="noz urbina">Noz Urbina</a> has written two excellent articles about the dangers of going overboard with conditional text. </p>
+<ul>
+<li><a href="http://www.dclab.com/resources/articles/conditional-content-top-tips-part-one">When Conditional Content Goes Wild: 4 Top Tips for Avoiding Pain – Part 1</a></li>
+<li><a href="http://www.dclab.com/articles/conditional-content-part-two-securing-support-making-deep-changes">When Conditional Content Goes Wild – Part 2: Securing Support and Making Deep Changes</a></li>
+</ul>
+<p>Noz encourages caution when adding too many conditions to topics. He shows the potential complexity with this clever diagram:</p>
+<p><a href="http://www.dclab.com/sites/default/files/pictures/conditional-content-many.png"><img src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/conditional-content-many.png" title="conditionalized text" alt="conditionalized text" style="max-width:600px;" /></a></p>
+<p>With such complex conditional logic, the content becomes nearly impossible to edit.</p>
+<p>Noz also talks about the opposite approach. Rather than conditionalizing content, you can transclude it (conref it) from another source: </p>
+<p><a href="http://www.dclab.com/sites/default/files/pictures/conditional-content-api-ref-after.png"><img src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/conditional-content-api-ref-after.png" alt="transclusion" title="transclusion" style="max-width:600px;" /></a></p>
+<p>Although transclusion can simplify re-use somewhat, transclusion can also become paralyzingly complicated as well. If you want to edit a specific chunk that you're reusing in 5 different topics, you need to know how your edits of that chunk will affect its context in each topic.</p>
+<p>When you have just a few conditions or transclusions with your content, there's no problem. But when you suddenly realize that editing the topic is requiring an immense amount of concentration and careful analysis because you've got too many conditions or transclusions to sort out in your mind, you have to consider whether simply <i>copying and pasting</i> is more efficient.</p>
+<p>In converting a recent set of help content to DITA, the original content was heavily transcluded, to the extent that most of the articles were simply blocks of re-used content. I spent days tracking down and identifying the outputs where each piece was transcluded and essentially copied the transcluded content into one aggregate document with various condition tag notes. (It was impossible to edit a simple topic because I didn't know where all the transclusions were embedded. The re-used paragraphs were also somewhat hard to find. Such is the case when you author in Confluence.)</p>
+<p>As I structured the content with DITA, at times I went overboard with conditional tags and ran into the same situation -- the various conditions applied to many topics had so many spinoffs with different products, programming languages, and audiences that it also was nearly impossible to edit.</p>
+<p>I don't have a magic bullet solution to getting around this except to offer this advice: when the reuse gets complicated, choose the method that saves you the most time. This may mean using transclusions instead of conditional text. It may mean breaking the content into smaller topics. It may mean having some redundant content that you copy and paste across topics. But just don't let your content become so complicated that it becomes uneditable.</p>
+<p>Now let's move to another DITA worst practice: the <code>topichead</code> element.</p>
+<h2>Topichead elements</h2>
+<p>I first ran into the idea that <code>topichead</code> elements were a no-no while reading Tony Self's <i>DITA Best Practices</i>, which is (interestingly) integrated into Oxygen's webhelp here: <a href="http://www.oxygenxml.com/dita/styleguide/webhelp-feedback/Artefact/Maps/c_Using_Topicheads_in_a_Map.html">The topichead element</a>. </p>
+<p>Tony writes:</p>
+<blockquote><p>There are two main reasons why <code>topichead</code> elements should be avoided.</p>
+<p>The first is that it conflicts with the notion of the separation of content and form, and the separation of data and metadata. All content (data) in a document should reside in the topics, not in the map. The ditamap should only contain metadata. If you use topichead as an alternative to a title-only topic, you are effectively placing non-reusable content, or data, in the ditamap.</p>
+<p>The second reason is more practical. If you are transforming a ditamap to a hypertext output format with a TOC, such as to Eclipse Help, the topichead elements will be transformed to unlinked parent nodes in the TOC. When the user clicks on such a node, the content pane will not display an associated topic, as it will for other nodes in the TOC. This inconsistency appears to the user to be an error. The unlinked node in the TOC will also cause inconsistencies or malfunctions in the way breadcrumbs function, and the way sequences (previous and next topic links) function.</p>
+</blockquote>
+<p>If you're not familiar with <code>topichead</code> elements, they essentially let you create folder titles and group together your topics in your table of contents in your map file. Here's an example:</p>
+<p>{% highlight xml %}<br />
+ <topichead navtitle="Resources"><br />
+  <topicref href="sample1.dita"/><br />
+  <topicref href="sample2.dita"/><br />
+  <topicref href="sample3.dita"/><br />
+ </topicgroup><br />
+{% endhighlight %}</p>
+<p>At first I wasn't sure of Tony's recommendation, so I asked the Yahoo DITA Group whether it was generally accepted that <code>topichead</code> elements should be avoided. Several people endorsed Tony's recommendation.</p>
+<p>Even apart from the usability issues, I think there are other good reasons for not using <code>topichead</code> elements. Most of the time, when you have a folder, you want to provide an overview of the folder (Flare had mini-TOCs partly for this reason). Writing this topic is usually tedious because it's so high level. You're mostly giving a summary of each of the topics within that folder. </p>
+<p>Here's where DITA's efficiency shines through. Create a blank concept topic called something like toc_resources.dita. Make it the parent topic for all other topics in the folder, like this: </p>
+<p>{% highlight xml %}<br />
+<topicref href="resources.dita"><br />
+  <topicref href="simple1.dita"/><br />
+  <topicref href="simple2.dita"/><br />
+  <topicref href="simple3.dita"/><br />
+ </topicref><br />
+{% endhighlight %}</p>
+<p>Make sure each of your child topics has a <code>shortdesc</code> element. Now after you generate your output, when a user clicks the folder, the overview topic will appear with each of the subtopics embedded on the parent page (like a mini-TOC), and their short descriptions right next to them. This is a brilliant way of providing a summary overview of the folder.</p>
+<p>In short, ditch the <code>topichead</code> and just put a blank overview topic as the parent topic for each folder. You won't have to bother writing a superfluous high-level overview topic, and you avoid the usability issues with unlinked folders in the UI.</p>

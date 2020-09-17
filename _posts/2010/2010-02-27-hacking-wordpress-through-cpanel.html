@@ -1,0 +1,28 @@
+---
+layout: post
+title: 'WordPress Tip: Avoid Getting Hacked through Bluehost''s cPanel'
+date: 2010-02-27 10:19:16.000000000 -08:00
+categories:
+- technical-writing
+- wordpress
+tags:
+- delete
+- hack
+- mysql
+- security
+- vulnerability
+status: publish
+
+published: true
+---
+<p>It's always hard to tell exactly why or how a site gets hacked. One of the WordPress sites I created for a client kept getting hacked. I took more extreme security measures, changing the database table prefix, adding an htaccess file to wp-admin that filtered IP addresses, adding a plugin to encrypt logins, adding a firewall, moving wp-config to another directory, and other measures. I thought the problem was with WordPress.</p>
+<p>Then last weekend, I checked the site, and it was totally gone. Completely? Yeah, completely. I logged into cPanel and the entire database had been deleted. Previous hacks had just deleted all posts, pages, and users tables in the database. Now the hacker turned it up a level and deleted the entire database. </p>
+<p>I looked at the log files and noticed that an IP address from Calgary rifled through the client's cPanel and finally deleted the database. After about 30 minutes with Bluehost tech support, the support person mentioned that someone had requested the password to be sent to the email address on file. It's common to have a retrieval method in case you forget your password. Almost every website with a login offers this. Somehow the hacker retrieved the password this way -- either by retrieving it from the client's email or through another method (intercepting it?).</p>
+<p>I pressed the support rep about the security and encryption for the password retrieval tool, and he did say that you can request the password for any domain by plugging in <a href="https://www.bluehost.com/cgi/forgot?domain" target="_blank">https://www.bluehost.com/cgi/forgot?domain</a>= or <a href="http://www.bluehost.com/cgi/forgot?domain" target="_blank">http://www.bluehost.com/cgi/forgot?domain</a>= and adding your domain after the = sign.</p>
+<p>He then said, "I think our issue might be from our password request tool. I am reporting it now." But he also suspected that the client's email account had been compromised. He said changing the password may solve the problem entirely.</p>
+<p>I don't know if the password retrieval method is a common way to hack a site. But it's a sneaky way to gain access. You may have a 25 digit hexadecimal alphanumeric password for your web host account, but probably not for your email. And do you really use different passwords for email, Facebook, Twitter, and the 75 other websites you log into? Guess one password and you probably have access to nearly all of them. With access to email, all you have to do is retrieve the password from the web host, and within minutes you have access to the MySQL database, where all posts and pages are stored.</p>
+<p>What I've learned from the experience is to immediately look at the log files. As hard as log files are to read, log files allow you to trace the path of the last visitor to the site. You can look at the origin of the IP address through <a href="http://who.is" target="_blank">who.is</a>. The log files tell you what part of your site the hacker visited. If the entry point is cPanel rather than your site, you might ask support if someone retrieved the password on your account. (The information about the password retrieval is something only tech support knows -- it's not in the log files.)</p>
+<p>So after hours of looking at WordPress for the security vulnerability, going through theme code, plugins, and everything else, it turns out the vulnerability was with Bluehost''s password retrieval and the client's email account. The hacker was getting in through cPanel, not WordPress.</p>
+<p>It's not such an alarming problem, though. Because even if your entire site gets hacked and deleted, the web host usually backs up the site once a week or so. The worst scenario is that you'll lose the last couple of posts (which you can retrieve via email if you're subscribed to email delivery of your posts).</p>
+<p>The real issue is getting hacked repeatedly and not knowing where the security vulnerability is. My advice is to look at the log files, who the last visitor was, and where they entered the site. Did they hack into WordPress or cPanel? Find out if someone retrieved the password. Is your email password easy to guess? Is it the same password that you use everywhere?</p>
+<p><strong>3/2/2010 update:</strong> A user in the comments informs me that the password retrieval tool is not part of cPanel but rather Bluehost. I had assumed otherwise. Sorry cPanel.</p>

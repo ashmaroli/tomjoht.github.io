@@ -1,0 +1,35 @@
+---
+layout: page
+title: 'DITA: Ditaval files (filtering attributes from your transforms)'
+permalink: /ditaval/
+date: 2014-12-27 15:16:06.000000000 -08:00
+jtype: notes_dita
+description: "Ditaval files define conditional processing rules for your transforms. When you want to apply conditional processing in your output, you can put these rules into a ditaval file."
+---
+{% include notes.html %}
+<div class="body conbody">
+<p class="shortdesc"> </p>
+<p>Oxygen has the same ditaval functionality built into its interface, so you don't need to create
+   a custom ditaval file in order to have the rules reflected in your output. You may be pushing
+   your content out to another system, however (such as Fluid Topics or Suiteshare), and in that
+   case, you'll need to create ditaval files. Having the ditaval files available in your dita files
+   will instruct the system on how to publish your content.</p>
+<div class="p">The ditaval file consists of the
+   following:
+{% highlight xml %}
+    <val>
+    <prop action="exclude" att="platform" val="mac" />
+    <prop action="exclude" att="platform" val="linux" />
+    <prop action="exclude" att="product" val="acme"/>
+</val>{% endhighlight %}
+</div>
+<p>You specify the action (almost always exclude), the attribute (<code>att</code>), and the
+   value (<code>val</code>). In this ditaval file, any properties that have
+    <code>platform="mac"</code> or <code>platform="linux"</code> or
+    <code>product="acme"</code> will be excluded from the output. Any elements with those
+   attribute values will be excluded.</p>
+<p>(You can change the default action to include and run more sophisticated logic in your ditaval
+   file if you so choose. But by default everything is included. The basic idea is to specify what
+   you want excluded.)</p>
+</p></div>
+

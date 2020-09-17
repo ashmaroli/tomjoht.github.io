@@ -1,0 +1,36 @@
+---
+layout: post
+title: Installing Mediawiki Is Much Easier Than The Instructions Suggest -- My Quick
+  10 Step Tutorial for Installing Mediawiki
+date: 2007-06-14 05:42:20.000000000 -07:00
+categories:
+- technical-writing
+- wikis
+tags:
+- Dokuwiki
+- installation
+- Mediawiki
+- PHP5
+status: publish
+
+published: true
+---
+<p><a title="Mediawiki" href="http://mediawiki.org" target="_blank"><img title="Mediawiki" alt="Mediawiki" src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/mediawiki1.jpg" align="right" hspace="5" vspace="5" /></a>If you glance at the <a title="Installation Guide for Mediawiki" href="http://www.mediawiki.org/wiki/Manual:Installation" target="_blank">instructions for installing Mediawiki</a>, it looks like you have to run complicated scripts with shell access to your server and other geeky stuff. In reality, it's about as easy <a title="previous video tutorial on installing dokuwiki" href="https://idratherbewriting.com/2007/05/06/installing-dokuwiki/" target="_blank">to install as Dokuwiki</a> -- assuming you have a typical hosted account, such as with Blue Host or Lunar Pages. Here's how to do it.</p>
+<p>To install Mediawiki:</p>
+<ol>
+<ol>
+<li>The latest version of Mediawiki requires PHP5. If you don't already have PHP5 on your server, ask your Web host to move your account to a server with PHP 5. If you have cPanel, you may have a feature that says Enable/Disable PHP5. If so, you can enable PHP5 yourself.</li>
+<li><a title="Download link" href="http://www.mediawiki.org/wiki/Download" target="_blank">Download the latest version</a> of Mediawiki. Currently the latest version is 1.15.1.</li>
+<li>Use a tool like <a title="7 Zip" href="http://7-zip.com" target="_blank">7-zip</a> to unzip the compressed Mediawiki folder. Right-click the downloaded folder and select 7-zip &gt; Extract. You may have to extract it a couple of times before you see the folder. Once extracted, upload the contents of the folder to a new directory on your server, probably at /wiki. For example, my practice wiki is at https://idratherbewriting.com/wiki.</li>
+<li>Create a MySQL database with a username and password. This may seem hard because it's probably not something you do regularly, but it's really a one minute process if you have a MySQL feature in cPanel. You also need to add a user to the MySQL database that you create.Watch this <a title="Lunar Pages tutorial" href="http://pluto3.lunarpages.com/tutorials/" target="_blank">video tutorial from LunarPages</a> to see how this is done in cPanel—browse to <strong>Shared Hosting Tutorials &gt; Working with cPanel &gt; MySQL Database Management &gt; Creating a MySQL Database</strong>. Write down the database name, the user you added, and the password.</li>
+</ol>
+</ol>
+<p><a title="MySQL Database Management video" href="http://pluto3.lunarpages.com/tutorials/" target="_blank"><img alt="MySQL Database Management" src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/mysql1.gif" /></a></p>
+<ol>
+<li>Run the Mediawiki installer by simply going to http://yourdomain.com/wiki (or wherever you installed the Mediawiki files). It should automatically bring up a configuration screen that requires a handful of field inputs (including the database information from the previous step) before telling you to click an installation link.</li>
+<li>Proceed through the installation wizard, entering the database information in the fields and selecting the options you want.</li>
+<li>After Mediawiki installs, you will be prompted to download the Localsettings.php file and upload it to the root directory. The Localsettings file is a key file that you add information to in order to customize your wiki. For example, no doubt you'll want to customize the logo area. Using a tool like <a title="NotePad++" href="http://notepad-plus.sourceforge.net/uk/site.htm" target="_blank">Notepad++</a>, add the following code (but change the path): <span style="color: #008000;">$wgLogo = "http://stc-suncoast.org/wiki/stclogo.gif";</span>. The http path is the path for your logo, so you should have an image file uploaded there. Don't forget the semicolon at the end of the statement.</li>
+<li>After Mediawiki installs, it shows you links to user guides. To customize your sidebar, search for Mediawiki:Sidebar (using the search box in your new wiki site). It will show you the page you need to modify.</li>
+</ol>
+<h2>Update Mediawiki</h2>
+<p>To upgrade Mediawiki, just download the latest Mediawiki files. Upload them to your root to overwrite the previous Mediawiki files. Then go to yoursitepath.com/mw-config. You'll be prompted to upgrade your wiki. As part of the upgrade process, you'll be asked to enter a key that you find your localsettings.php file.</p>

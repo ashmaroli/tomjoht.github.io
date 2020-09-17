@@ -1,0 +1,44 @@
+---
+layout: post
+title: How to embed looping videos on your web page
+date: 2014-05-18 15:24:22.000000000 -07:00
+categories:
+- technical-writing
+tags: []
+---
+<style>
+.loopingVideo {<br />
+border:5px solid #dedede;<br />
+margin: 10px 0px;<br />
+box-shadow: 10px 10px 5px #888888; 	 	}<br />
+</style>
+<p>Videos are great, but sometimes all you want to do is show a brief clip that demonstrates a certain action. For example, take a look at this article on <a target="_blank" href="http://www.wikihow.com/Make-Play-Dough">how to make play-dough</a>. Each step has an embedded, looping video that shows the action you need to take. There aren't any player controls on the videos, and the videos only start when you mouse over them. </p>
+<p>Embedding looping videos is easy to do with with HTML5 video tags. See this <a href="http://stackoverflow.com/questions/19159888/how-can-i-play-pause-more-than-one-video-by-mouseover">post on Stack Overflow</a> for some sample code. </p>
+<p>I created a quick example with looping videos in this post. Suppose you're creating release notes about some image editing functions in WordPress. Here's how you might embed looping videos. <i>Mouse over the images to make them play.</i></p>
+<h2>Cropping images</h2>
+<p>You can crop images that you have uploaded in WordPress.</p>
+<p>  <video class="loopingVideo" id="video1" width="600" onmouseover="this.play()" preload><br />
+    <source src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/video/crop.mp4" type="video/mp4"><br />
+    <source src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/video/crop.webmhd.webm" type="video/webm"><br />
+    <source src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/video/crop.oggtheora.ogv" type="video/ogg"></p>
+<p>Your browser does not support HTML5 video.</p>
+<p>  </source></source></video></p>
+<h2>Rotating images</h2>
+<p>You can also rotate the videos clockwise or counterclockwise.</p>
+<p>  <video id="video3" class="loopingVideo" width="600" onmouseover="this.play()" preload><br />
+    <source src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/video/rotate.mp4" type="video/mp4"><br />
+<source src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/video/rotate.webmhd.webm" type="video/webm"><br />
+<source src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/video/rotate.oggtheora.ogv" type="video/ogg"></p>
+<p>Your browser does not support HTML5 video.</p>
+<p>  </source></source></source></video></p>
+<h2>Flipping images</h2>
+<p>You can also make quick adjustments to the videos. For example, you can flip the images horizontally or vertically.</p>
+<p>  <video id="video2" class="loopingVideo" width="600" onmouseover="this.play()" onmouseout="this.pause()" preload><br />
+    <source src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/video/flip.mp4" type="video/mp4"><br />
+<source src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/video/flip.webmhd.webm" type="video/webm"><br />
+<source src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/video/flip.oggtheora.ogv" type="video/ogg"></p>
+<p>Your browser does not support HTML5 video.</p>
+<p>  </source></source></source></video><br />
+<i>With this last video, if you move your mouse off the video, the video stops.</i></p>
+<p>The only shortcoming with the method above is that the videos don't have a watermark over them to let you know they're videos rather than static images. I added a box shadow to the images, which would easily let the user learn to recognize looping videos versus static images. </p>
+<p>There are quite a few options with the <a href="http://www.w3schools.com/tags/tag_video.asp">HTML5 video tag</a>, such as whether to include controls, autoplay, loop, and more.</p>

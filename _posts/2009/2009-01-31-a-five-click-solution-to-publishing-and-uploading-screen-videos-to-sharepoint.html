@@ -1,0 +1,72 @@
+---
+layout: post
+title: A Five-Click Solution to Publishing and Uploading Screen Videos to SharePoint
+date: 2009-01-31 00:25:15.000000000 -08:00
+categories:
+- technical-writing
+- screencasting
+tags:
+- convenience
+- Jing
+- jing pro
+- SharePoint
+- speed
+status: publish
+
+published: true
+---
+<p><figure><a href="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/2009/01/jingsun.png"><img class="alignright" title="Customizing Jing" src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/jingsun-150x1501.png" alt="Customizing Jing" width="150" height="150" /></a><figcaption>Customizing Jing to auto-publish to SharePoint</figcaption></figure></p>
+<p>The other day a developer approached me at work to ask how he could quickly capture and upload video to explain database processes he was documenting. He said he downloaded a trial version of Camtasia Studio, but wasn't sure if it was the best solution.</p>
+<p>Of course I had an answer: <a href="http://jingproject.com" target="_blank">Jing</a>, I told him. I showed him how he could use Jing to quickly capture and save video, and he seemed impressed. I thought that was the end of the story, but no. Two days later he approached my desk again and said he needed an even faster way to upload the video. He was using a SharePoint wiki to document techniques. The process of saving the video and then uploading it using SharePoint was too tedious. I need it faster, he said. A couple of clicks and that's it. The longer it takes, the less likely I am to create video at all.</p>
+<p>He reinforced a belief I wrote about earlier: <a href="https://idratherbewriting.com/2008/09/17/whats-convenient-gets-used-a-general-principle-that-applies-to-nearly-everything/">What's convenient gets used</a>. With that principle in mind, the following is the quickest video solution for uploading Jing videos to a SharePoint directory. This process requires a few minutes of setup, but once you set it up, it literally takes just five clicks to initiate, capture, and publish a video to SharePoint. </p>
+<h3>1. Find the SharePoint Document Library Path</h3>
+<p>Find the path of a SharePoint document library that you want to upload videos into. To do this:</p>
+<ol>
+<li>Go to the Document Library where you want to store the uploaded videos.</li>
+<li>Click the <strong>Actions </strong>button and select <strong>Open with Windows Explorer</strong>. (If you're in Firefox, you won't see this option.) A window opens into which you can drag and drop files.</li>
+<li>Copy the path that appears in the Address field at the top of the window.</li>
+</ol>
+<h3>2. Map a Network Drive to the SharePoint Library Path</h3>
+<ol>
+<li>*In Windows XP, double-click the <strong>My Computer </strong>icon on your desktop.</li>
+<li>Go to <strong>Tools &gt; Map Network Drive</strong>.</li>
+<li>Pick an unused drive letter.</li>
+<li>In the Folder field, insert the path you copied in step 3 of the previous section.</li>
+<li>Before clicking Finish, change the path a little. Remove the http: and switch the forward slashes to backslashes. For example, if you had https://abccompany.org/sites/jing/Documents, change it to <strong>abccompany.orgsitesjingDocuments</strong>.</li>
+<li>Click <strong>Finish </strong>to close the dialog. If you typed the path correctly, the network drive should map and then open.</li>
+</ol>
+<p><strong>*Note: </strong>In Windows Vista, click the <strong>Start </strong>button, click <strong>Computer</strong>, and then click <strong>Map Network Drive.</strong></p>
+<h3>3. Create a New Jing Button and Configure It to Publish to SharePoint</h3>
+<ol>
+<li>Start Jing.</li>
+<li>Mouse over the Jing Sun and click the right ball ("More").</li>
+<li>Click the <strong>Preferences </strong>button (the cog icon, in the exact middle of the buttons).</li>
+<li>Click <strong>Customize Jing Buttons</strong>. A row of buttons appears, somewhat similar to the following image (but without as many buttons).</li>
+<p><figure><a href="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/2009/01/jingbuttons.png"><img class="size-full wp-image-2819" title="Jing buttons" src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/jingbuttons1.png" alt="Jing buttons to customize" width="449" height="147" /></a><figcaption>Jing buttons to customize</figcaption></figure></p>
+<li>Click the <strong>New </strong>button.</li>
+<li>In the top row of icons, click <strong>Save.</strong></li>
+<li>In the Button Description field, type a name for the button. This helps you identify the button. (You can't customize the graphic, and you may have multiple instances of the same graphic, so choose a good description.)</li>
+<li>In the Save Location field, select <strong>Other</strong>. You're prompted with a pop-up allowing you to browse for a folder.</li>
+<li>Click the plus sign (<strong>+</strong>) next to My Computer and select drive you mapped; then click <strong>OK</strong>.</li>
+<li>In the Clipboard Contents field of the Jing dialog box, select <strong>Custom Code</strong>.</li>
+<li>In the Image custom return text field, type <strong>http://abccompany.org/sites/jing/Documents/[filename]</strong>. (Or whatever your path is -- just make sure you add [filename] in brackets at the end.)</li>
+<li>In the Video custom return text field, type <strong>http://abccompany.org/sites/jing/Documents/[filename]</strong>.</li>
+<li>Click <strong>Save</strong>.</li>
+<li>Drag the buttons in the order you want, and then click <strong>Close</strong>.</li>
+</ol>
+<h3>4. Set a Hotkey to Launch Jing</h3>
+<ol>
+<li>If the Jing preferences window isn't open, mouse over the Jing sun and click the right ball ("More").</li>
+<li>Click the <strong>Preferences </strong>button (the cog icon).</li>
+<li>In the Capture Hotkey field, type a trigger key, such as <strong>Alt+V</strong>.</li>
+<li>Click the <strong>check mark </strong>button to close the Jing Sun dialog.</li>
+</ol>
+<h3>The Five-Click Process</h3>
+<p>Now that you've set all this up, the five-click process for uploading a Jing videos is as follows.</p>
+<ol>
+<li>Click Alt+V (or whatever hotkey you configured to start a capture).</li>
+<li>Click the video or image button to specify the type of capture.</li>
+<li>If it's a video, the video capture begins. After you're finished, click the stop button to end the capture.</li>
+<li>Click the custom Jing button you created (the one configured to upload directly to a SharePoint directory). After uploading, Jing automatically copies the path to the video or image to your clipboard.</li>
+<li>In your wiki, click the hyperlink button to insert a link, or the image button to insert an image. Press Ctrl+V to insert the link to the video or image.</li>
+</ol>

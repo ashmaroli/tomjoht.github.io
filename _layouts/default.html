@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include google_analytics.html %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{page.content | strip | strip_html | truncate: 170}}{% endif %}">
+    <meta name="keywords" content="{{page.tags}}{% if page.tags %}, {% endif %} {{page.keywords}}">
+
+    <title>{% if page.jtype == "homepage" %}{{ site.name }} | {{site.description}} {% else %} {{ page.title }} {% if page.series %}{{ page.series | before: "|" }}{% endif %} | {{ site.name }} {% endif %}</title>
+    <link href='//fonts.googleapis.com/css?family=Montserrat:700,400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Merriweather:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ "/css/customstyles.min.css" | prepend:site.baseurl }}"  type='text/css'>
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+    {% seo %}
+    </head>
+
+
+    <body>
+
+    <div id="masthead">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+            <div class="topComic">
+              <figure class="topComic">
+              {% include topComic.html %}
+            </figure>
+            </div>  <!-- /topComic -->
+            <div class="container">
+            <div class="row">
+            <div class="col-md-6">
+            <div class="siteLogo"><a href="{{ "/" | prepend: site.baseurl }}"><img src="{{ "https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/idratherbewriting-site-logo.png" | prepend: site.baseurl }}" alt="Home" /></a>
+            </div><!-- /siteLogo -->
+            </div><!-- /col-md-7 -->
+            </div><!-- /row -->
+            </div><!-- /container -->
+            <!-- /cont -->
+            <div class="container">
+            <div class="row">
+            <div class="col-md-12">
+            <div class="top-spacer"> </div>
+            </div><!-- /col-md-12 -->
+            </div><!-- /row -->
+            </div><!-- /container -->
+
+            </div><!-- /masthead -->
+
+            {% include topnav.html %}
+
+    <!-- Page Content -->
+    <div class="container">
+            <!-- Content Row -->
+            <div class="row">
+            <!-- Sidebar Column -->
+            <div class="col-md-3">
+            <div id="sidebarArea">
+
+              <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+              {% include sidebar.html %}
+              {% include tinyletter.html %}
+              {% include social_media_icons.html %}
+          {% include sidebar_comics.html %}
+          <div>
+          <p></p>
+    </ul>
+    </div>
+    </div> <!-- /sidebarArea -->
+    </div><!-- /col-md-3 -->
+
+
+    <!-- Content Column -->
+
+    <div class="col-md-9">
+      <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
+      {% include search_results.html %}
+      <script src="{{ "/js/toc.js" | prepend:site.baseurl }}"></script>
+      <div id="content">{{content}}</div>
+
+    <div id="sidebarAreaHomePage">
+            <!-- appears for mobile view only-->
+            <ul id="mytechsidebar" class="nav">
+              {% include notestoc.html %}
+        {% include tinyletter2.html %}
+        {% include social_media_icons.html %}
+        {% include sidebar_comics.html %}
+        <div>
+
+    </ul>
+    </div> <!-- /sidebarAreaHomePage -->
+
+    </div> <!-- /col-md-9 -->
+
+    </div><!-- /row -->
+    <hr>
+    </div><!-- /container -->
+    <script src="https://cdn.commento.io/js/count.js"></script>
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=263655980663798&autoLogAppEvents=1"></script>
+    </body>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ "/css/syntax.min.css" | prepend:site.baseurl }}"  type='text/css'>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+    <link rel="shortcut icon" href="//idratherbewriting.com/favicon.ico" type="image/x-icon">
+
+
+
+<!-- activate bootstrap tooltips -->
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
+
+    <script>
+    $(document).ready(function() {
+        $("#tg-sb-link").click(function() {
+            $("#sidebarArea").toggleClass('navToggle');
+            $(".col-md-9").toggleClass('expand');
+            $(".col-md-7").toggleClass('expand');
+            $("#tg-sb-icon").toggleClass('fa-toggle-on');
+            $("#tg-sb-icon").toggleClass('fa-toggle-off');
+        });
+    });
+    </script>
+
+    </html>

@@ -1,0 +1,88 @@
+---
+layout: page
+title: 'DITA: Images'
+permalink: /images_dita/
+date: 2014-12-27 15:16:06.000000000 -08:00
+jtype: notes_dita
+description: "You can add images in your content pretty much anywhere. It works like HTML except the tag is slightly different and you have to specify whether the image breaks the line or not."
+---
+{% include notes.html %}
+<div class="body conbody">
+<p class="p toc">
+<div class="section">
+<h2 class="title sectiontitle">Inserting an image</h2>
+<p>To insert an image, use the <code>image</code> tag and specify the
+   <code>placement</code> attribute to set line wrapping.</p>
+{% highlight xml %}<image href="images/sample.png" placement="break"><alt>Sample image</alt></image>{% endhighlight %}
+<p>You can also choose <code>placement="inline"</code> if you're inserting an image in the
+      line of your sentence (such as a button image) or if you want text to flow around your image. </p>
+<p>The Open Toolkit renders images with a <code>placement="break"</code> attribute with two <code>br</code> tags before and after the image.</p>
+<p>You can also choose an <code>align</code> attribute and select <code>left</code>,
+        <code>right</code>, or <code>center</code>. The <code>alt</code> tags in the
+      middle define the alt text for the image, which is what displays if a user's images are turned
+      off. </p>
+<p>Note that images won't automatically resize or automatically take on a border. However, you can
+      set those properties in your webhelp CSS to accomplish this.</p>
+<p>When you're writing a task, you can put images inside the <code>cmd</code> or the
+    <code>info</code> tag.</p>
+<div class="p">If you want a caption to your images, add it like this:</p>
+{% highlight xml %}<fig><title>Sample Image</title>
+<image href="images/sample.png" placement="break"><alt>Sample image</alt></image>
+</fig>{% endhighlight %}
+</div>
+<p>The caption will actually appear below the image in the Oxygen webhelp output.</p>
+</p></div>
+<div class="section">
+<h2 class="title sectiontitle">Reusing images</h2>
+<div class="p">If you reuse an image through the <code>conref</code> element, you must include the
+          <code>href</code> attribute because this attribute is required. But the value for href
+        is
+        <code>-dita-use-conref-target</code>.
+{% highlight xml %}<img conref="#concept_engines/img_ej25_engine" href="-dita-use-conref-target" />{% endhighlight %}
+</div></div>
+<div class="section">
+<h2 class="title sectiontitle">Referring to specific figures</h2>
+<div class="p">If you want to refer to an image with a specific figure caption, you can use cross
+        reference.
+{% highlight xml %}<p>See <xref href="#concept_lcw_fkl_q4/image1" type="fig">Oxygen Sample Webhelp</xref> for details.</p>
+
+<fig id="image1">
+    <title>Oxygen Sample Webhelp</title>
+   <image href="oxygen.png" placement="break"/>
+</fig>{% endhighlight %}
+</div>
+<p>The output will say "See Oxygen Sample Webhelp for details." With the webhelp, the
+        reference will link to the image. The image itself won't have a figure number below it. With
+        PDF, there will be a figure number below it.</p>
+<div class="p">If you want to use <code>conref</code> to manually pull in the image title, you can do
+        so like
+        this:
+{% highlight xml %}<p>See <xref href="#concept_lcw_fkl_q4/image1" type="fig"><ph conref="testfile.dita#concept_lcw_fkl_q4/image1_title"/></xref> for details.</p>
+   
+   
+   <fig id="image1" frame="all">
+    
+    <title><ph id="image1_title">Oxygen Sample Webhelp</ph></title>
+   <image href="oxygen.png" placement="break" scalefit="yes"/>
+   </fig>{% endhighlight %}
+</div></div>
+<div class="section">
+<h2 class="title sectiontitle">Image format</h2>
+<p>It's recommended that you use the SVG format for images because this format allows you to
+        add callouts that you can later edit and extract for translation. </p>
+</p></div>
+<div class="section">
+<h2 class="title sectiontitle">Other parameters</h2>
+<div class="p">If you want a border around your image and caption, use the <code>frame="all"</code>
+        attribute. If you want your image to be scaled to its container size, use
+          <code>scalefit</code>. You can also specify a <code>width</code>.</p>
+{% highlight xml %}<fig id="image1" frame="all">
+    <title>Oxygen Sample Webhelp</title>
+   <image href="oxygen.png" placement="break" scalefit="yes" width="700"/>
+</fig>{% endhighlight %}
+</div>
+<p>However, I think it would be wiser to use <code>max-width</code> on images in your
+        webhelp stylesheet.</p>
+</p></div>
+</p></div>
+

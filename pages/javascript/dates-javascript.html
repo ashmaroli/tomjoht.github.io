@@ -1,0 +1,68 @@
+---
+layout: page
+title: 'JavaScript: Dates'
+permalink: /dates-javascript/
+date: 2013-02-02 23:43:17.000000000 -08:00
+categories:
+- java
+jtype: notes_javascript
+---
+
+<p>JavaScript has a built-in Date object that allows you to use it in various ways.</p>
+<p>To use the Date object, you assign a variable as a new Date, like this:</p>
+<p>{% highlight javascript %}
+var eclipse = new Date();
+{% endhighlight %}</p>
+<p>The <code>Date</code> object accepts six parameters: year, month, day, minutes, seconds, and milliseconds. You don't need to use all the parameters.</p>
+<p>If you don't insert any values in the parentheses <code>()</code>, the parameters default to the current date and time.</p>
+<h2>Example Use of the Date Object</h2>
+<p>To set a date to 12/12/12, you might write:</p>
+<p>{% highlight javascript %}
+var eclipse = new Date(2012,12,12);
+{% endhighlight %}</p>
+<p>Now you can apply various methods to <code>eclipse</code> to manipulate the Date object. For example, let's suppose you want to know what day of the week this is. You would write:</p>
+<p>{% highlight javascript %}
+var eclipse = new Date(2012,12,12);
+//apply the method to the object
+console.log( eclipse.getDay() );
+{% endhighlight %}</p>
+<p>The result is 6. This means that 12-12-2012 falls on a Friday. (Remember that the first day of the week is a 0, not a 1.)</p>
+<p>Here's another example:</p>
+<p>{% highlight javascript %}//set your a variable for sampleDate
+var sampleDate = new Date(1975,9,2);
+//apply the getDay method to the object
+console.log ( sampleDate.getDay() );{% endhighlight %}</p>
+<p>This returns 3, which corresponds to Wednesday.</p>
+<h2>Available Methods for the Date Object</h2>
+<p>The Date object has a variety of methods:</p>
+<p>{% highlight javascript %}
+.getMonth();// returns a number from 0 to 11
+.getFullYear(); //YYYY (not a zero-based index)
+.getDate(); // day of the month
+.getDay(); // 0-6 day of the week. 0 is sunday
+.getHours(); // returns 0-23
+.getTime(); // milliseconds since 1/1/1970
+{% endhighlight %}</p>
+<h2>The getTime Method</h2>
+<p>The <code>.getTime</code> method seems odd (returning milliseconds since 1970) but is actually useful in conditional statements. You can't ask if two dates are equal to each other, because dates aren't regular numbers. However, you can ask which date has a larger number of milliseconds since 1970.</p>
+<p>Essentially, the <code>getTime</code> method is a way of converting dates to numbers.</p>
+<p>Here's how you might use <code>getTime</code>:</p>
+<p>{% highlight javascript %}//create two date objects
+var newYearsDay = new Date(1,1,2013);
+var valentinesDay = new Date(2/14/2013);
+//if the first object is greater than the second, write this
+if ( newYearsDay.getTime() ) > valentinesDay.getTime() ) {
+console.log("Great!") }
+//if it's not, write this
+else {
+console.log("That's okay.")
+}{% endhighlight %}</p>
+<h2>Using the setDate Method</h2>
+<p>In addition to <code>.getDate</code>, there are equivalent methods for setting the date using <code>setDate</code>. The following are available methods for <code>setDate</code>:</p>
+<p>{% highlight javascript %}
+.setMonth(); // sets a number from 0 to 11
+.setFullYear(); //sets the year (not a zero-based index)
+.setDate(); // sets the day of month
+.setDay(); // sets the day of the week (0-6)
+.setHours(); //sets the hours for a day (0-23)
+.setTime(); // sets the milliseconds since 1/1/1970.{% endhighlight %}</p>

@@ -1,0 +1,52 @@
+---
+layout: post
+title: 'WordPress Tip: Add More Widget Areas to Your WordPress Theme'
+date: 2010-02-07 22:26:33.000000000 -08:00
+categories:
+- wordpress
+tags:
+- cms
+- register sidebars
+- Screencasts
+- sidebars
+- tweaks
+status: publish
+
+published: true
+---
+<p>You can add more than one sidebar section to your WordPress site. For example, with the stc-intermountain.org site, I added a whole bunch of additional sidebar sections in the Appearance &gt; Widgets section. </p>
+<p><figure><img class="size-medium wp-image-5662" title="sidebarsections" alt="" src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/sidebarsections-e1265516556888-600x4921.png" width="600" height="492" /><figcaption>Adding more sidebar sections</figcaption></figure> </p>
+<p>Adding more sidebars is useful if you're using WordPress more as a content management system than a blog.</p>
+<p>Someone asked me how I did this. The process isn't hard. I've broken it down into three steps. (Before you continue with the instructions, you may want to back up the information in your existing sidebar.)</p>
+<h3>Step 1</h3>
+<p>Add this code to your functions.php file under Appearance &gt; Editor.</p>
+<p>{% highlight php %}<br />
+if ( function_exists('register_sidebars') )<br />
+        register_sidebar(array('name'=&gt;'Sidebar Home','before_title'=&gt;'<br />
+','after_title'=&gt;'<br />
+'));<br />
+        register_sidebar(array('name'=&gt;'Sidebar Jobs','before_title'=&gt;'<br />
+','after_title'=&gt;'<br />
+'));<br />
+        register_sidebar(array('name'=&gt;'Sidebar Meetings','before_title'=&gt;'<br />
+','after_title'=&gt;'<br />
+'));<br />
+{% endhighlight %}</p>
+<p>Note: Sometimes you have other sidebar code that looks similar to the above. If so, use it instead.</p>
+<p>In this example, the sidebars that will be added will be called Sidebar Home, Sidebar Jobs, and Sidebar Meetings. Change the names to whatever you want. You can add many more sections here, not just three.</p>
+<p>You can also add more arguments than simply name, before_title, and after-title. See <a href="http://codex.wordpress.org/Function_Reference/register_sidebar">the full function reference and arguments</a> with registering sidebars.</p>
+<p>You'll also need to delete the previous <a href="http://codex.wordpress.org/Function_Reference/register_sidebars">register_sidebars function</a> so that the two don't conflict.</p>
+<h3>Step 2</h3>
+<p>Add a reference to the sidebar section where you want the sidebar to appear in your theme. For example, type the following to insert the Jobs sidebar:<br />
+  {% highlight php %}<br />
+&lt;?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar Jobs') ) : ?&gt;<br />
+{% endhighlight %}<br />
+To insert the Meetings sidebar, you would type Sidebar Meetings rather than Sidebar Jobs.</p>
+<h3>Step 3</h3>
+<p>In a text editor, duplicate your existing sidebar code, rename the file (for example, sidebar_jobs.php), and FTP the file into the folder with your other theme files.</p>
+<p>Where you want the file to appear (probably in a specific page template), add this reference to the file:<br />
+  {% highlight php %}<br />
+&lt;?php include (TEMPLATEPATH . '/sidebar_jobs.php'); ?&gt;<br />
+{% endhighlight %}<br />
+Remove the other code that calls the sidebar (probably get_sidebar). Now that page template will show your Jobs sidebar. And you can configure your Jobs sidebar under Appearance &gt; Widgets.</p>
+<p>Although I've mainly been calling these sections a sidebar, you can create sections and insert them anywhere in your site, such as the footer, an ad space in the header, or elsewhere.</p>

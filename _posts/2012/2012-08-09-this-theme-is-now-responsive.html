@@ -1,0 +1,25 @@
+---
+layout: post
+title: This Theme Is Now Responsive
+date: 2012-08-09 12:58:15.000000000 -07:00
+categories:
+- technical-writing
+- wordpress
+tags:
+- minimalism
+- responsive design
+status: publish
+
+published: true
+---
+<p><a href="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/2012/08/navthumb.png"><img class="alignright size-full wp-image-11697" title="This Theme Is Now Responsive" src="https://s3.us-west-1.wasabisys.com/idbwmedia.com/images/navthumb.png" alt="" width="125" height="140" /></a>Previously, I've used WordPress plugins to style this blog's view on mobile devices, but with all the buzz about multi-device display and publishing, I decided to switch themes to a completely responsive theme.</p>
+<p>Because I use minimalistic themes, switching from one minimalistic theme to another is almost unnoticeable. But so you can see the difference, resize your browser to a smaller size. As you resize it, you'll see the navigate bar suddenly switch to another style. On your mobile device, the text will still be readable. You can read the content on mobile, tablet, and desktop computers. Even the print looks good (hit Ctrl+P).</p>
+<p>I didn't manually style the theme. I'm using <a href="http://www.woothemes.com/2012/06/canvas/">Canvas</a>, a theme from Woothemes. Canvas is more like a minimalistic, responsive theme framework than anything else. Hands-down it is the most popular and flexible theme from Woothemes, and with all the responsive styling built-right in, it's a good choice for a blog theme.</p>
+<p>Interestingly, the main stylesheet for Canvas defines the mobile display. An additional stylesheet, layout.css, makes adjustments for a desktop display. In other words, the designers prioritized mobile  first, rather than adjusting for mobile after designing for a desktop display.</p>
+<p>In the layout.css stylesheet, you'll see various media queries. These media queries tell browsers to style the content a certain way for specific device sizes:</p>
+<blockquote><p>@media only screen and (max-width: 1000px)</p>
+<p>@media only screen and (max-width: 768px)</p>
+<p>@media only screen and (min-width: 768px)</p></blockquote>
+<p>That third media query targets the desktop display, and if you look at the styles, you'll see about 50 styles in that section, compared to only about 5 styles in the previous two sections.</p>
+<p>I think responsive themes tend to be more minimalistic to accommodate this flexibility across devices. And when it comes to minimalism, I've always felt that content is much more important than design. I choose my blog themes like I choose my glasses -- I want the nearly frameless glasses that let people focus on my eyes rather than my frames. </p>
+<p>I was recently listening to Joe Sokohl's STC Summit presentation, <a href="http://www.slideshare.net/jsokohl/destroy-the-box">Destroying the Box</a>. He talks about Frank Lloyd Wright's architectural philosophy as an inspiration for UX design. In the presentation, Joe quotes Lau Tzu, who says, "The reality of the building does not consist of the roof and walls, but the space within to be lived." I gravitate toward the same philosophy with blog themes. I want to make it clean and open enough for my content to breathe.</p>

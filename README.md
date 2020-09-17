@@ -1,3 +1,4 @@
-# Blog files for I'd Rather Be Writing 
+A shallow fork of https://github.com/tomjoht/tomjoht.github.io with some modifications and without
+its Git History.
 
-This is the Jekyll site for idratherbewriting.com.
+All content belongs to the original author.

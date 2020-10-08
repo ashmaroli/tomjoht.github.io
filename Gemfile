@@ -8,7 +8,7 @@ gem 'jekyll-commonmark'
 gem 'jekyll-mentions'
 gem 'jekyll-paginate'
 gem 'jekyll-redirect-from'
-gem 'jekyll-seo-tag'
+gem 'jekyll-seo-tag', github: 'jekyll/jekyll-seo-tag'
 gem 'jekyll-sitemap'
 
 gem 'liquid-c'

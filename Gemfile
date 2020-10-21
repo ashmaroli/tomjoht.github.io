@@ -11,7 +11,8 @@ gem 'jekyll-redirect-from'
 gem 'jekyll-seo-tag'
 gem 'jekyll-sitemap'
 
-gem 'liquid-c'
+gem 'liquid', github: 'Shopify/liquid'
+gem 'liquid-c', github: 'Shopify/liquid-c'
 
 gem 'tzinfo-data'
 gem 'tzinfo', '~> 1.0'

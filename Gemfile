@@ -17,3 +17,4 @@ gem 'tzinfo-data'
 gem 'tzinfo', '~> 1.0'
 
 gem 'memory_profiler'
+gem 'stackprof' if RUBY_PLATFORM !~ /mingw|mswin|java/

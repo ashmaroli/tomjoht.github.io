@@ -39,7 +39,6 @@ plugins:
 markdown: CommonMark
 
 paginate: 15
-permalink: /:year/:month/:day/:title/
 
 collections:
   restapicourse:

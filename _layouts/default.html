@@ -23,6 +23,9 @@
 
     <div id="masthead">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+{% assign api_wrkshp = site.pages | where: "title", "Java API Workshop" | first %}
+
             <div class="topComic">
               <figure class="topComic">
               {% include topComic.html %}
